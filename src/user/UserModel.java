@@ -12,6 +12,10 @@ public class UserModel {
         support = new PropertyChangeSupport(this);
     }
 
+    public UserModel(String nickname, String email, String password) {
+        support = new PropertyChangeSupport(this);
+    }
+
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
@@ -20,10 +24,10 @@ public class UserModel {
         support.removePropertyChangeListener(listener);
     }
 
-    private String nickname;
-    private String email;
-    private String password;
-    private String statusInfo;
+    private  String nickname;
+    private  String email;
+    private  String password;
+    private String statusInfo = "Status Infos";
 
     public String getNickname() {
         return nickname;
