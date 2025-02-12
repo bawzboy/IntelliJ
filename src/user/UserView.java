@@ -15,6 +15,7 @@ import org.jdesktop.observablecollections.*;
  * @author helge
  */
 public class UserView extends JFrame {
+    PersistUsers users = new PersistUsers();
     private UserManager userManager = new UserManager();
 
     public UserView() {
@@ -30,6 +31,9 @@ public class UserView extends JFrame {
         if (!nickname.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
             userManager.createUser(nickname, email, password);
             textField3.setText("User created successfully!");
+            textField1.setText("");
+            textField2.setText("");
+            passwordField1.setText("");
         } else {
             textField3.setText("All fields must be filled!");
         }

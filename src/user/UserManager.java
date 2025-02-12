@@ -1,18 +1,22 @@
 package user;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserManager {
-    private List<UserModel> alleUser = new ArrayList<>();
+    private PersistUsers users;
+
+    public UserManager() {
+        this.users = new PersistUsers(); // Initialize PersistUsers here
+    }
 
     public void createUser(String nickname, String email, String password) {
         UserModel newUser = new UserModel(nickname, email, password);
-        alleUser.add(newUser);
+        users.getUsers().add(newUser);
+        users.saveUsers();
     }
 
     public UserModel readUser(String email) {
-        for (UserModel user: alleUser) {
+        for (UserModel user: users.getUsers()) {
             if (user.getEmail().equals(email)) {
                 return user;
             }
@@ -21,7 +25,7 @@ public class UserManager {
     }
 
     public List<UserModel> readUsers() {
-        return new ArrayList<>(alleUser);
+        return users.getUsers();
     }
 
     public void updateUser(UserModel userModel) {
@@ -30,16 +34,19 @@ public class UserManager {
             existingUser.setNickname(userModel.getNickname());
             existingUser.setPassword(userModel.getPassword());
         }
+        users.saveUsers();
     }
 
     public void updateUser(String nickname, String email, String password) {
         updateUser(new UserModel(nickname, email, password));
+        users.saveUsers();
     }
 
     public void deleteUser(String email) {
         UserModel user = readUser(email);
         if (user != null) {
-            alleUser.remove(readUser(email));
+            users.getUsers().remove(readUser(email));
         }
+        users.saveUsers();
     }
 }

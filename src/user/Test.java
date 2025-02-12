@@ -1,9 +1,9 @@
 package user;
 
-import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
+        PersistUsers users = new PersistUsers();
         UserManager userManager = new UserManager();
 
         userManager.createUser("testUser", "test@example.com", "1234");

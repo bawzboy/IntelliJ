@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class UserModel {
 
-    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    private transient final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
