@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserManager {
-    List<UserModel> alleUser = new ArrayList<>();
+    private List<UserModel> alleUser = new ArrayList<>();
 
-    public void createUser(UserModel user) {
-        alleUser.add(user);
+    public void createUser(String nickname, String email, String password) {
+        UserModel newUser = new UserModel(nickname, email, password);
+        alleUser.add(newUser);
     }
 
     public UserModel readUser(String email) {
@@ -20,64 +21,25 @@ public class UserManager {
     }
 
     public List<UserModel> readUsers() {
-        for (UserModel user : alleUser) {
-            System.out.println(user);
+        return new ArrayList<>(alleUser);
+    }
+
+    public void updateUser(UserModel userModel) {
+        UserModel existingUser = readUser(userModel.getEmail());
+        if (existingUser != null) {
+            existingUser.setNickname(userModel.getNickname());
+            existingUser.setPassword(userModel.getPassword());
         }
     }
 
-    public boolean updateUser(UserModel UserModel) {
-        for (UserModel user: alleUser) {
-            if (user.getEmail().equals(UserModel.getEmail())) {
-                user.setNickname(UserModel.getNickname());
-                user.setPassword(UserModel.getPassword());
-                return true;
-            }
-        }
-        return false;
+    public void updateUser(String nickname, String email, String password) {
+        updateUser(new UserModel(nickname, email, password));
     }
 
-    public boolean deleteUser(UserModel user) {
-        return alleUser.remove(user);
+    public void deleteUser(String email) {
+        UserModel user = readUser(email);
+        if (user != null) {
+            alleUser.remove(readUser(email));
+        }
     }
 }
-
-//package user;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class UserManager {
-//    List<UserModel> alleUser = new ArrayList<>();
-//
-//    public void createUser(String nickname, String email, String password) {
-//        alleUser.add(new UserModel(nickname, email, password));
-//    }
-//
-//    public UserModel readUser(String email) {
-//        for (UserModel user: alleUser) {
-//            if (user.getEmail().equals(email)) {
-//                return user;
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public void readUsers() {
-//        for (UserModel user : alleUser) {
-//            System.out.println(user);
-//        }
-//    }
-//
-//    public void updateUser(String newNickname, String email, String newPassword) {
-//        UserModel user = readUser(email);
-//        if (user != null) {
-//            user.setNickname(newNickname);
-//            user.setPassword(newPassword);
-//        }
-//    }
-//
-//    public void deleteUser(String email) {
-//        alleUser.remove(readUser(email));
-//    }
-//}
-

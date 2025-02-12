@@ -6,15 +6,7 @@ import java.util.Objects;
 
 public class UserModel {
 
-    private final PropertyChangeSupport support;
-
-    public UserModel() {
-        support = new PropertyChangeSupport(this);
-    }
-
-    public UserModel(String nickname, String email, String password) {
-        support = new PropertyChangeSupport(this);
-    }
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
@@ -22,6 +14,15 @@ public class UserModel {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
+    }
+
+    public UserModel() {
+    }
+
+    public UserModel(String nickname, String email, String password) {
+        this.nickname = nickname;
+        this.email = email;
+        this.password = password;
     }
 
     private  String nickname;
@@ -81,11 +82,9 @@ public class UserModel {
 
     @Override
     public String toString() {
-        return "UserModel{" +
-                "nickname='" + nickname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "User: " + nickname + "\n" +
+                "email: " + email + "\n" +
+                "password: " + password + "\n";
     }
 
 }

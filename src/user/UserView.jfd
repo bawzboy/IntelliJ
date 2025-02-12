@@ -5,8 +5,8 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
 			"$layoutConstraints": "hidemode 3"
-			"$columnConstraints": "[200:200,fill][200:200,fill]"
-			"$rowConstraints": "[][][][][][]"
+			"$columnConstraints": "[200:200,fill][fill][200:200,fill][fill]"
+			"$rowConstraints": "[][][][][][][]"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -18,7 +18,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField1"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 0"
+				"value": "cell 2 0"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label2"
@@ -29,7 +29,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField2"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 1"
+				"value": "cell 2 1"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
@@ -40,41 +40,52 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "passwordField1"
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 2"
+				"value": "cell 2 2"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
 				"text": "Create User"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "createUser", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 3"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button2"
 				"text": "Find User by Email"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "findUser", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 3"
+				"value": "cell 2 3"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button3"
 				"text": "Update User"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "updateUser", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 4"
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button4"
 				"text": "Delete User"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "deleteUser", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 1 4"
+				"value": "cell 2 4"
 			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label4"
-				"text": "Status Info"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": "Show all Users"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "showAllUsers", true ) )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 5 2 1,alignx center,growx 0"
+				"value": "cell 0 5"
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField3"
+				"editable": false
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 6 3 1,align center center,grow 0 0,wmin 450,hmin 100"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 465, 300 )
+			"size": new java.awt.Dimension( 490, 495 )
 		} )
 		add( new FormNonVisual( "user.UserModel" ) {
 			name: "observableList1"
@@ -86,7 +97,7 @@ new FormModel {
 			addBinding( new FormBinding( "observableList1", "nickname", "textField1", "text" ) )
 			addBinding( new FormBinding( "observableList1", "email", "textField2", "text" ) )
 			addBinding( new FormBinding( "observableList1", "password", "passwordField1", "text" ) )
-			addBinding( new FormBinding( "observableList1", "statusInfo", "label4", "text" ) )
+			addBinding( new FormBinding( "observableList1", "statusInfo", "textField3", "text" ) )
 		} )
 	}
 }

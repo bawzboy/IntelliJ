@@ -1,5 +1,7 @@
 package user;
 
+import java.util.List;
+
 public class Test {
     public static void main(String[] args) {
         UserManager userManager = new UserManager();
@@ -8,17 +10,17 @@ public class Test {
         userManager.createUser("user2", "user2@example.com", "abcd");
 
         System.out.println("Alle Benutzer:");
-        userManager.readUsers();
+        System.out.println(userManager.readUsers());
 
         System.out.println("Benutzer lesen:");
         System.out.println(userManager.readUser("test@example.com"));
 
         System.out.println("Benutzer aktualisieren:");
-        userManager.updateUser("test@example.com", "updatedUser", "newpass");
-        userManager.readUsers();
+        userManager.updateUser("updatedUser", "test@example.com", "newpass");
+        System.out.println(userManager.readUsers());
 
         System.out.println("Benutzer löschen:");
         userManager.deleteUser("user2@example.com");
-        userManager.readUsers();
+        System.out.println(userManager.readUsers());
     }
 }
