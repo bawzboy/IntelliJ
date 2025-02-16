@@ -17,10 +17,8 @@ public class PersistUsers {
     private Gson gson = new Gson();
 
     public PersistUsers() {
-        this.users = new ArrayList<>();
         loadUsers();
     }
-
 
     public void saveUsers() {
         try (Writer writer = new FileWriter(FILE_PATH)) {
@@ -38,7 +36,6 @@ public class PersistUsers {
             saveUsers();
             return;
         }
-
         try (Reader reader = new FileReader(file)) {
             List<UserModel> loadedUsers = gson.fromJson(reader, new TypeToken<List<UserModel>>() {}.getType());
             if (loadedUsers != null) {

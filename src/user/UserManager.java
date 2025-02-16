@@ -6,17 +6,17 @@ public class UserManager {
     private PersistUsers users;
 
     public UserManager() {
-        this.users = new PersistUsers(); // Initialize PersistUsers here
+        this.users = new PersistUsers();
     }
 
-    public void createUser(String nickname, String email, String password) {
-        UserModel newUser = new UserModel(nickname, email, password);
+    public void createUser(UserModel user) {
+        UserModel newUser = new UserModel(user);
         users.getUsers().add(newUser);
         users.saveUsers();
     }
 
     public UserModel readUser(String email) {
-        for (UserModel user: users.getUsers()) {
+        for (UserModel user : users.getUsers()) {
             if (user.getEmail().equals(email)) {
                 return user;
             }
@@ -28,17 +28,12 @@ public class UserManager {
         return users.getUsers();
     }
 
-    public void updateUser(UserModel userModel) {
-        UserModel existingUser = readUser(userModel.getEmail());
+    public void updateUser(UserModel user) {
+        UserModel existingUser = readUser(user.getEmail());
         if (existingUser != null) {
-            existingUser.setNickname(userModel.getNickname());
-            existingUser.setPassword(userModel.getPassword());
+            existingUser.setNickname(user.getNickname());
+            existingUser.setPassword(user.getPassword());
         }
-        users.saveUsers();
-    }
-
-    public void updateUser(String nickname, String email, String password) {
-        updateUser(new UserModel(nickname, email, password));
         users.saveUsers();
     }
 
@@ -49,4 +44,5 @@ public class UserManager {
         }
         users.saveUsers();
     }
+
 }

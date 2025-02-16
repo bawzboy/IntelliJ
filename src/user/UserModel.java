@@ -19,16 +19,16 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(String nickname, String email, String password) {
-        this.nickname = nickname;
-        this.email = email;
-        this.password = password;
+    public UserModel(UserModel model) {
+        this.nickname = model.getNickname();
+        this.email = model.getEmail();
+        this.password = model.getPassword();
     }
 
     private  String nickname;
     private  String email;
     private  String password;
-    private String statusInfo = "Status Infos";
+    private String statusInfo;
 
     public String getNickname() {
         return nickname;
@@ -65,7 +65,9 @@ public class UserModel {
     }
 
     public void setStatusInfo(String statusInfo) {
+        String old = this.statusInfo;
         this.statusInfo = statusInfo;
+        support.firePropertyChange("statusInfo", old, statusInfo);
     }
 
     @Override

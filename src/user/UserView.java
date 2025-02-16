@@ -4,70 +4,78 @@
 
 package user;
 
+import java.awt.*;
 import java.awt.event.*;
+import java.util.regex.Pattern;
 import javax.swing.*;
+import javax.swing.event.*;
 import net.miginfocom.swing.*;
 import org.jdesktop.beansbinding.*;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 import org.jdesktop.observablecollections.*;
+import org.jdesktop.swingbinding.*;
 
 /**
  * @author helge
  */
 public class UserView extends JFrame {
-    PersistUsers users = new PersistUsers();
-    private UserManager userManager = new UserManager();
+
+    InterfaceUserManager interfaceUserManager;
+
+    public void setInterfaceUserManager(InterfaceUserManager interfaceUserManager) {
+        this.interfaceUserManager = interfaceUserManager;
+    }
 
     public UserView() {
         initComponents();
     }
 
-    private void createUser(ActionEvent e) {
-        String nickname = textField1.getText();
-        String email = textField2.getText();
-        char[] passwordChars = passwordField1.getPassword();
-        String password = new String(passwordChars);
+    public UserModel getObservableList1() {
+        return observableList1;
+    }
 
-        if (!nickname.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-            userManager.createUser(nickname, email, password);
-            textField3.setText("User created successfully!");
-            textField1.setText("");
-            textField2.setText("");
-            passwordField1.setText("");
-        } else {
-            textField3.setText("All fields must be filled!");
-        }
+    private void createUser(ActionEvent e) {
+        interfaceUserManager.createUser();
     }
 
     private void findUser(ActionEvent e) {
-        String email = textField2.getText();
-        UserModel foundUser = userManager.readUser(email);
-        textField1.setText(foundUser.getNickname());
-        passwordField1.setText(foundUser.getPassword());
-        textField3.setText(userManager.readUser(email).toString());
+        interfaceUserManager.findUser();
     }
 
     private void updateUser(ActionEvent e) {
-        String email = textField2.getText();
-        UserModel user = userManager.readUser(email);
-        user.setNickname(textField1.getText());
-        char[] passwordChars = passwordField1.getPassword();
-        String password = new String(passwordChars);
-        user.setPassword(password);
-        textField3.setText("User updated!");
+        interfaceUserManager.updateUser();
     }
 
     private void deleteUser(ActionEvent e) {
-        String email = textField2.getText();
-        userManager.deleteUser(email);
-        textField3.setText("User deleted!");
-        textField1.setText("");
-        textField2.setText("");
-        passwordField1.setText("");
+        interfaceUserManager.deleteUser();
     }
 
     private void showAllUsers(ActionEvent e) {
-        textField3.setText(userManager.readUsers().toString());
+        interfaceUserManager.showAllUsers();
+    }
+
+    public JTextField getTextField1() {
+        return textField1;
+    }
+
+    public JTextField getTextField2() {
+        return textField2;
+    }
+
+    public JPasswordField getPasswordField1() {
+        return passwordField1;
+    }
+
+    public UserSelectionModel getObservableList2() {
+        return observableList2;
+    }
+
+    private void list1ValueChanged(ListSelectionEvent e) {
+        interfaceUserManager.findSelectedUser();
+    }
+
+    private void comboBox1ValueChanged(ListSelectionEvent e) {
+        interfaceUserManager.findSelectedUser();
     }
 
     private void initComponents() {
@@ -84,8 +92,12 @@ public class UserView extends JFrame {
         button3 = new JButton();
         button4 = new JButton();
         button5 = new JButton();
+        comboBox1 = new JComboBox();
         textField3 = new JTextField();
+        scrollPane1 = new JScrollPane();
+        list1 = new JList();
         observableList1 = new UserModel();
+        observableList2 = new UserSelectionModel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -144,10 +156,20 @@ public class UserView extends JFrame {
         button5.setText("Show all Users");
         button5.addActionListener(e -> showAllUsers(e));
         contentPane.add(button5, "cell 0 5");
+        contentPane.add(comboBox1, "cell 2 5");
 
         //---- textField3 ----
         textField3.setEditable(false);
-        contentPane.add(textField3, "cell 0 6 3 1,align center center,grow 0 0,wmin 450,hmin 100");
+        contentPane.add(textField3, "cell 0 6,align center center,grow 0 0,wmin 200,hmin 100");
+
+        //======== scrollPane1 ========
+        {
+
+            //---- list1 ----
+            list1.addListSelectionListener(e -> list1ValueChanged(e));
+            scrollPane1.setViewportView(list1);
+        }
+        contentPane.add(scrollPane1, "cell 2 6");
         pack();
         setLocationRelativeTo(getOwner());
 
@@ -165,6 +187,16 @@ public class UserView extends JFrame {
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
             observableList1, BeanProperty.create("statusInfo"),
             textField3, BeanProperty.create("text")));
+        bindingGroup.addBinding(SwingBindings.createJComboBoxBinding(UpdateStrategy.READ_WRITE,
+            observableList2, (BeanProperty) BeanProperty.create("allEmails"), comboBox1));
+        bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
+            observableList2, BeanProperty.create("selectedEmail"),
+            comboBox1, BeanProperty.create("selectedItem")));
+        bindingGroup.addBinding(SwingBindings.createJListBinding(UpdateStrategy.READ_WRITE,
+            observableList2, (BeanProperty) BeanProperty.create("allEmails"), list1));
+        bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
+            observableList2, BeanProperty.create("selectedEmail"),
+            list1, BeanProperty.create("selectedElement")));
         bindingGroup.bind();
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -182,8 +214,12 @@ public class UserView extends JFrame {
     private JButton button3;
     private JButton button4;
     private JButton button5;
+    private JComboBox comboBox1;
     private JTextField textField3;
+    private JScrollPane scrollPane1;
+    private JList list1;
     private UserModel observableList1;
+    private UserSelectionModel observableList2;
     private BindingGroup bindingGroup;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

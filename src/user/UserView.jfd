@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.5" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.6" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -17,6 +17,9 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField1"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 0"
 			} )
@@ -28,6 +31,9 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField2"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 1"
 			} )
@@ -39,6 +45,9 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JPasswordField" ) {
 				name: "passwordField1"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 2 2"
 			} )
@@ -77,20 +86,45 @@ new FormModel {
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 5"
 			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 5"
+			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField3"
 				"editable": false
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
-				"value": "cell 0 6 3 1,align center center,grow 0 0,wmin 450,hmin 100"
+				"value": "cell 0 6,align center center,grow 0 0,wmin 200,hmin 100"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JList" ) {
+					name: "list1"
+					addEvent( new FormEvent( "javax.swing.event.ListSelectionListener", "valueChanged", "list1ValueChanged", true ) )
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 2 6"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 490, 495 )
+			"size": new java.awt.Dimension( 490, 500 )
 		} )
 		add( new FormNonVisual( "user.UserModel" ) {
 			name: "observableList1"
+			auxiliary() {
+				"JavaCodeGenerator.variableGetter": true
+			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 515, 20 )
+		} )
+		add( new FormNonVisual( "user.UserSelectionModel" ) {
+			name: "observableList2"
+			auxiliary() {
+				"JavaCodeGenerator.variableGetter": true
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 515, 90 )
 		} )
 		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
 			"name": "bindingGroup"
@@ -98,6 +132,10 @@ new FormModel {
 			addBinding( new FormBinding( "observableList1", "email", "textField2", "text" ) )
 			addBinding( new FormBinding( "observableList1", "password", "passwordField1", "text" ) )
 			addBinding( new FormBinding( "observableList1", "statusInfo", "textField3", "text" ) )
+			addBinding( new FormBinding( "observableList2", "allEmails", "comboBox1", "elements" ) )
+			addBinding( new FormBinding( "observableList2", "selectedEmail", "comboBox1", "selectedItem" ) )
+			addBinding( new FormBinding( "observableList2", "allEmails", "list1", "elements" ) )
+			addBinding( new FormBinding( "observableList2", "selectedEmail", "list1", "selectedElement" ) )
 		} )
 	}
 }
