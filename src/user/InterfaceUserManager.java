@@ -7,6 +7,6 @@ public interface InterfaceUserManager {
     public UserModel findUser();
     public boolean updateUser();
     public boolean deleteUser();
-    public List<UserModel> showAllUsers();
+    public void clearSelection();
     public boolean findSelectedUser();
 }

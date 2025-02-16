@@ -51,7 +51,7 @@ public class UserView extends JFrame {
     }
 
     private void showAllUsers(ActionEvent e) {
-        interfaceUserManager.showAllUsers();
+        interfaceUserManager.clearSelection();
     }
 
     public JTextField getTextField1() {
@@ -74,17 +74,17 @@ public class UserView extends JFrame {
         interfaceUserManager.findSelectedUser();
     }
 
-    private void comboBox1ValueChanged(ListSelectionEvent e) {
-        interfaceUserManager.findSelectedUser();
-    }
+//    private void comboBox1(ActionEvent e) {
+//        interfaceUserManager.findSelectedUser();
+//    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Evaluation license - Helge
-        label1 = new JLabel();
-        textField1 = new JTextField();
         label2 = new JLabel();
         textField2 = new JTextField();
+        label1 = new JLabel();
+        textField1 = new JTextField();
         label3 = new JLabel();
         passwordField1 = new JPasswordField();
         button1 = new JButton();
@@ -115,52 +115,53 @@ public class UserView extends JFrame {
             "[]" +
             "[]" +
             "[]" +
+            "[]" +
             "[]"));
-
-        //---- label1 ----
-        label1.setText("nickname");
-        contentPane.add(label1, "cell 0 0");
-        contentPane.add(textField1, "cell 2 0");
 
         //---- label2 ----
         label2.setText("email");
         contentPane.add(label2, "cell 0 1");
         contentPane.add(textField2, "cell 2 1");
 
+        //---- label1 ----
+        label1.setText("nickname");
+        contentPane.add(label1, "cell 0 2");
+        contentPane.add(textField1, "cell 2 2");
+
         //---- label3 ----
         label3.setText("password");
-        contentPane.add(label3, "cell 0 2");
-        contentPane.add(passwordField1, "cell 2 2");
+        contentPane.add(label3, "cell 0 3");
+        contentPane.add(passwordField1, "cell 2 3");
 
         //---- button1 ----
         button1.setText("Create User");
         button1.addActionListener(e -> createUser(e));
-        contentPane.add(button1, "cell 0 3");
+        contentPane.add(button1, "cell 0 4");
 
         //---- button2 ----
         button2.setText("Find User by Email");
         button2.addActionListener(e -> findUser(e));
-        contentPane.add(button2, "cell 2 3");
+        contentPane.add(button2, "cell 2 4");
 
         //---- button3 ----
         button3.setText("Update User");
         button3.addActionListener(e -> updateUser(e));
-        contentPane.add(button3, "cell 0 4");
+        contentPane.add(button3, "cell 0 5");
 
         //---- button4 ----
         button4.setText("Delete User");
         button4.addActionListener(e -> deleteUser(e));
-        contentPane.add(button4, "cell 2 4");
+        contentPane.add(button4, "cell 2 5");
 
         //---- button5 ----
-        button5.setText("Show all Users");
+        button5.setText("Clear Selection");
         button5.addActionListener(e -> showAllUsers(e));
-        contentPane.add(button5, "cell 0 5");
-        contentPane.add(comboBox1, "cell 2 5");
+        contentPane.add(button5, "cell 0 6");
+        contentPane.add(comboBox1, "cell 2 6");
 
         //---- textField3 ----
         textField3.setEditable(false);
-        contentPane.add(textField3, "cell 0 6,align center center,grow 0 0,wmin 200,hmin 100");
+        contentPane.add(textField3, "cell 0 7,align center center,grow 0 0,wmin 200,hmin 100");
 
         //======== scrollPane1 ========
         {
@@ -169,7 +170,7 @@ public class UserView extends JFrame {
             list1.addListSelectionListener(e -> list1ValueChanged(e));
             scrollPane1.setViewportView(list1);
         }
-        contentPane.add(scrollPane1, "cell 2 6");
+        contentPane.add(scrollPane1, "cell 2 7");
         pack();
         setLocationRelativeTo(getOwner());
 
@@ -203,10 +204,10 @@ public class UserView extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Helge
-    private JLabel label1;
-    private JTextField textField1;
     private JLabel label2;
     private JTextField textField2;
+    private JLabel label1;
+    private JTextField textField1;
     private JLabel label3;
     private JPasswordField passwordField1;
     private JButton button1;
