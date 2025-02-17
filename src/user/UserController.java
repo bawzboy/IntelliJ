@@ -93,6 +93,7 @@ public class UserController implements InterfaceUserManager {
         clearTextFields();
         initMailSelection();
         modelMailSelection.setSelectedEmail(null);
+        view.getTextField2().setEditable(true);
         return true;
     }
 
