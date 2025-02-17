@@ -115,7 +115,7 @@ public class UserController implements InterfaceUserManager {
             public boolean verify(JComponent input) {
                 JTextField textField = (JTextField) input;
                 String text = textField.getText();
-                boolean isValid = regex.matcher(text).matches();
+                boolean isValid = text.isEmpty() || regex.matcher(text).matches();
                 textField.setBackground(isValid ? Color.white : Color.red);
                 return isValid;
             }

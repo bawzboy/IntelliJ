@@ -80,7 +80,7 @@ public class UserView extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Helge
+        // Generated using JFormDesigner Evaluation license - Eric
         label2 = new JLabel();
         textField2 = new JTextField();
         label1 = new JLabel();
@@ -203,7 +203,7 @@ public class UserView extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Helge
+    // Generated using JFormDesigner Evaluation license - Eric
     private JLabel label2;
     private JTextField textField2;
     private JLabel label1;
