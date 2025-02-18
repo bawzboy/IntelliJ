@@ -26,7 +26,6 @@ public class UserController implements InterfaceUserManager {
     private void initView() {
 //        userManager = new UserManager();
         userManager = new UserManagerJDBC();
-//        UserView view = new UserView();
         model = view.getObservableList1();
         modelMailSelection = view.getObservableList2();
         initMailSelection();
