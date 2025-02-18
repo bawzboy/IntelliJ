@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class UserController implements InterfaceUserManager {
-    UserManager userManager;
+//    UserManager userManager;
+    UserManagerJDBC userManager;
     private UserModel model;
     private UserSelectionModel modelMailSelection;
     UserView view = new UserView();  // benötigt um Zugriff auf textField zu bekommen
@@ -23,7 +24,8 @@ public class UserController implements InterfaceUserManager {
     }
 
     private void initView() {
-        userManager = new UserManager();
+//        userManager = new UserManager();
+        userManager = new UserManagerJDBC();
 //        UserView view = new UserView();
         model = view.getObservableList1();
         modelMailSelection = view.getObservableList2();
