@@ -9,7 +9,7 @@ class PasswordCheckTest {
     @Test
     public void checkPassword(){
         assertTrue(pwcheck.check("helge@me.com", "Passw0rd!"));
-        assertTrue(pwcheck.check("helge@me.com", "Passw0rd"));
-        assertTrue(pwcheck.check("helge@me.", "Passw0rd!"));
+        assertFalse(pwcheck.check("helge@me.com", "Passw0rd"));
+        assertFalse(pwcheck.check("helge@me.", "Passw0rd!"));
     }
 }

@@ -24,15 +24,17 @@ public class PasswordCheck {
                 }
                 else {
                     System.out.println("Password is not correct");
+                    return false;
                 }
             } else {
                 System.out.println("No user found");
+                return false;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return true;
     }
 }
 
