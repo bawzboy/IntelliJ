@@ -10,7 +10,7 @@ public class PostsView extends JFrame {
     private CardLayout cardLayout;
 
     public PostsView() {
-        setTitle("CardLayout Beispiel");
+        setTitle("Posts");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

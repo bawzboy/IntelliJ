@@ -40,5 +40,6 @@
         <jarDirectory url="file://$MODULE_DIR$/lib/mysql-connector-j-9.2.0" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="junit.jupiter" level="project" />
   </component>
 </module>

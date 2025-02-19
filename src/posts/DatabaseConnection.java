@@ -1,17 +1,17 @@
-package user;
+package posts;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Singleton-Klasse zur Verwaltung der Datenbankverbindung
  */
 class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/user_db";
+    private static final String URL = "jdbc:mysql://localhost:3306/posts_db";
     private static final String USER = "root";
     private static final String PASSWORD = "321-Meins";
-    private static Connection connection;
+    private static final Connection connection;
 
     static {
         try {
