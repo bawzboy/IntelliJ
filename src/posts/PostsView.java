@@ -11,7 +11,7 @@ public class PostsView extends JFrame {
 
     public PostsView() {
         setTitle("Posts");
-        setSize(400, 300);
+        setSize(400, 320);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -20,7 +20,7 @@ public class PostsView extends JFrame {
 
         cardPanel.add(new LoginScreen(), "Login");
         cardPanel.add(new JLabel("Benutzerverwaltung"), "Benutzerverwaltung");
-        cardPanel.add(new JLabel("Posts"), "Posts");
+        cardPanel.add(new PostScreen(), "Posts");
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Navigation");
