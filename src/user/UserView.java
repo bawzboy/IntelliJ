@@ -4,15 +4,12 @@
 
 package user;
 
-import java.awt.*;
 import java.awt.event.*;
-import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.event.*;
 import net.miginfocom.swing.*;
 import org.jdesktop.beansbinding.*;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
-import org.jdesktop.observablecollections.*;
 import org.jdesktop.swingbinding.*;
 
 /**
@@ -20,10 +17,10 @@ import org.jdesktop.swingbinding.*;
  */
 public class UserView extends JFrame {
 
-    InterfaceUserManager interfaceUserManager;
+    InterfaceUserController interfaceUserController;
 
-    public void setInterfaceUserManager(InterfaceUserManager interfaceUserManager) {
-        this.interfaceUserManager = interfaceUserManager;
+    public void setInterfaceUserManager(InterfaceUserController interfaceUserController) {
+        this.interfaceUserController = interfaceUserController;
     }
 
     public UserView() {
@@ -35,23 +32,23 @@ public class UserView extends JFrame {
     }
 
     private void createUser(ActionEvent e) {
-        interfaceUserManager.createUser();
+        interfaceUserController.createUser();
     }
 
     private void findUser(ActionEvent e) {
-        interfaceUserManager.findUser();
+        interfaceUserController.findUserByEmail();
     }
 
     private void updateUser(ActionEvent e) {
-        interfaceUserManager.updateUser();
+        interfaceUserController.updateUser();
     }
 
     private void deleteUser(ActionEvent e) {
-        interfaceUserManager.deleteUser();
+        interfaceUserController.deleteUser();
     }
 
     private void showAllUsers(ActionEvent e) {
-        interfaceUserManager.clearSelection();
+        interfaceUserController.clearSelection();
     }
 
     public JTextField getTextField1() {
@@ -71,7 +68,7 @@ public class UserView extends JFrame {
     }
 
     private void list1ValueChanged(ListSelectionEvent e) {
-        interfaceUserManager.findSelectedUser();
+        interfaceUserController.findSelectedUser();
     }
 
 //    private void comboBox1(ActionEvent e) {

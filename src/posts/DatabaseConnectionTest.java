@@ -10,5 +10,6 @@ class DatabaseConnectionTest {
     void getConnectionTest() {
         Connection conn = DatabaseConnection.getConnection();
         assertNotNull(conn);
+
     }
 }

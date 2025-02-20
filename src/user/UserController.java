@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class UserController implements InterfaceUserManager {
+public class UserController implements InterfaceUserController, InterfaceUserManager {
 //    UserManager userManager;
+//    List<String> mails = new ArrayList<String>();
     UserManagerJDBC userManager;
     private UserModel model;
     private UserSelectionModel modelMailSelection;
     UserView view = new UserView();  // benötigt um Zugriff auf textField zu bekommen
-//    List<String> mails = new ArrayList<String>();
 
     private final Pattern nicknamePattern = Pattern.compile("^[a-zA-Z][a-zA-Z0-9_.-]{2,19}$");
     private final Pattern emailPattern = Pattern.compile("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$");
@@ -55,6 +55,7 @@ public class UserController implements InterfaceUserManager {
         return true;
     }
 
+
     private void clearTextFields() {
         model.setEmail("");
         model.setPassword("");
@@ -62,7 +63,7 @@ public class UserController implements InterfaceUserManager {
     }
 
     @Override
-    public UserModel findUser() {
+    public UserModel readUser() {
         UserModel user = userManager.readUser(model.getEmail());
         model.setEmail(user.getEmail());
         model.setPassword(user.getPassword());
@@ -71,6 +72,12 @@ public class UserController implements InterfaceUserManager {
         return model;
     }
 
+    @Override
+    public boolean readUsers() {
+        return true;
+    }
+
+    @Override
     public UserModel findUserByEmail(String email) {
         UserModel user = userManager.readUser(email);
         if (user == null) {
@@ -80,6 +87,11 @@ public class UserController implements InterfaceUserManager {
         model.setPassword(user.getPassword());
         model.setNickname(user.getNickname());
         return model;
+    }
+
+    @Override
+    public UserModel findUserByEmail() {
+        return null;
     }
 
     @Override

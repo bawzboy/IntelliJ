@@ -14,7 +14,8 @@ public class PasswordCheck {
 
     public boolean check(String email, String inputPassword) {
         String sql = "SELECT password FROM users WHERE email = ?";
-        try (Connection conn = DatabaseConnection.getConnection()) {
+        Connection conn = DatabaseConnection.getConnection();
+        try  {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
