@@ -12,7 +12,7 @@ public class UserController implements InterfaceUserController, InterfaceUserMan
     UserManagerJDBC userManager;
     private UserModel model;
     private UserSelectionModel modelMailSelection;
-    UserView view = new UserView();  // benötigt um Zugriff auf textField zu bekommen
+    UserView view = new UserView();
 
     private final Pattern nicknamePattern = Pattern.compile("^[a-zA-Z][a-zA-Z0-9_.-]{2,19}$");
     private final Pattern emailPattern = Pattern.compile("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$");
