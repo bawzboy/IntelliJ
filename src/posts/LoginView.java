@@ -9,17 +9,20 @@ import javax.swing.*;
 import net.miginfocom.swing.*;
 import org.jdesktop.beansbinding.*;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+import user.InterfaceUserController;
 
 /**
  * @author helge
  */
-public class LoginView extends JPanel {
+public class LoginView extends JPanel{
+    InterfaceLogin interfaceLogin;
+
     public LoginView() {
         initComponents();
     }
 
     private void loginButton(ActionEvent e) {
-        // TODO add your code here
+        interfaceLogin.passwordCheck();
     }
 
     private void registrierenButton(ActionEvent e) {
@@ -29,7 +32,6 @@ public class LoginView extends JPanel {
     public User getObservableList1() {
         return observableList1;
     }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off

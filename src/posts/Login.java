@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PasswordCheck {
+public class Login {
 
-    public boolean check(String email, String inputPassword) {
+    public boolean passwordCheck(String email, String inputPassword) {
         String sql = "SELECT password FROM users WHERE email = ?";
         Connection conn = DatabaseConnection.getConnection();
         try  {
@@ -32,5 +32,5 @@ public class PasswordCheck {
             return false;
         }
     }
-}
 
+}
