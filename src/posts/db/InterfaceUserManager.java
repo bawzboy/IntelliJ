@@ -1,4 +1,4 @@
-package posts;
+package posts.db;
 
 import java.util.List;
 

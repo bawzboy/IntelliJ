@@ -1,10 +1,10 @@
-package posts;
+package posts.db;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserManagerJDBC implements InterfaceUserManager{
+public class UserManagerJDBC implements InterfaceUserManager {
 
     public void createUser(User user) {
         User newUser = new User(user);
@@ -24,6 +24,7 @@ public class UserManagerJDBC implements InterfaceUserManager{
     }
 
     public User readUser(String email) {
+//        User foundUser = null;  // Tests schlagen fehl
         User foundUser = new User();
         String sql = "SELECT * FROM users WHERE email = ?";
         Connection conn = DatabaseConnection.getConnection();

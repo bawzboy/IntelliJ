@@ -1,11 +1,11 @@
-package posts;
+package posts.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Login {
+public class PasswordCheck {
 
     public boolean passwordCheck(String email, String inputPassword) {
         String sql = "SELECT password FROM users WHERE email = ?";
@@ -32,5 +32,5 @@ public class Login {
             return false;
         }
     }
-
 }
+

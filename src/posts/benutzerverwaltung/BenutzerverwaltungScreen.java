@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Feb 19 18:07:06 CET 2025
  */
 
-package posts;
+package posts.benutzerverwaltung;
 
 import javax.swing.*;
 import javax.swing.table.*;

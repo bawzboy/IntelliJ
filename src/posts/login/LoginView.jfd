@@ -49,7 +49,7 @@ new FormModel {
 			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 400, 300 )
 		} )
-		add( new FormNonVisual( "posts.User" ) {
+		add( new FormNonVisual( "posts.login.LoginModel" ) {
 			name: "observableList1"
 			auxiliary() {
 				"JavaCodeGenerator.variableGetter": true

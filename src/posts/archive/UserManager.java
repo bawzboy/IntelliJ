@@ -1,4 +1,7 @@
-package posts;
+package posts.archive;
+
+import posts.db.InterfaceUserManager;
+import posts.db.User;
 
 import java.util.ArrayList;
 import java.util.List;

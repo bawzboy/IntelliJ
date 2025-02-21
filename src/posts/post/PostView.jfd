@@ -27,5 +27,17 @@ new FormModel {
 			"location": new java.awt.Point( 0, 0 )
 			"size": new java.awt.Dimension( 400, 300 )
 		} )
+		add( new FormNonVisual( "posts.post.PostModel" ) {
+			name: "observableList1"
+			auxiliary() {
+				"JavaCodeGenerator.variableGetter": true
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 455, 25 )
+		} )
+		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
+			"name": "bindingGroup"
+			addBinding( new FormBinding( "observableList1", "text", "textArea1", "text" ) )
+		} )
 	}
 }

@@ -2,6 +2,10 @@ package posts;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import posts.db.DatabaseConnection;
+import posts.db.InterfaceUserManager;
+import posts.db.User;
+import posts.db.UserManagerJDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -2,13 +2,14 @@
  * Created by JFormDesigner on Tue Feb 18 19:31:29 CET 2025
  */
 
-package posts;
+package posts.login;
 
 import java.awt.event.*;
 import javax.swing.*;
 import net.miginfocom.swing.*;
 import org.jdesktop.beansbinding.*;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+import posts.db.User;
 import user.InterfaceUserController;
 
 /**
@@ -29,7 +30,7 @@ public class LoginView extends JPanel{
         // TODO add your code here
     }
 
-    public User getObservableList1() {
+    public LoginModel getObservableList1() {
         return observableList1;
     }
 
@@ -42,15 +43,16 @@ public class LoginView extends JPanel{
         passwordField1 = new JPasswordField();
         button1 = new JButton();
         button2 = new JButton();
-        observableList1 = new User();
+        observableList1 = new LoginModel();
 
         //======== this ========
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
-        (0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder.CENTER,javax.swing.border
-        .TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt
-        .Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void
-        propertyChange(java.beans.PropertyChangeEvent e){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException()
-        ;}});
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
+        . swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing
+        . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
+        Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
+        ) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
+        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName (
+        ) )) throw new RuntimeException( ); }} );
         setLayout(new MigLayout(
             "hidemode 3",
             // columns
@@ -102,7 +104,7 @@ public class LoginView extends JPanel{
     private JPasswordField passwordField1;
     private JButton button1;
     private JButton button2;
-    private User observableList1;
+    private LoginModel observableList1;
     private BindingGroup bindingGroup;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Thu Feb 20 16:42:53 CET 2025
  */
 
-package posts;
+package posts.register;
 
 import javax.swing.*;
 import net.miginfocom.swing.*;

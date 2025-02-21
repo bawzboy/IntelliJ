@@ -1,4 +1,9 @@
-package posts;
+package posts.main;
+
+import posts.login.LoginController;
+import posts.post.PostController;
+import posts.post.PostView;
+import posts.login.LoginView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,9 +21,13 @@ public class MainView extends JFrame {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
-        cardPanel.add(new LoginView(), "Login");
+        LoginController loginController = new LoginController();
+        cardPanel.add(loginController.getView(), "Login");
+
         cardPanel.add(new JLabel("Benutzerverwaltung"), "Benutzerverwaltung");
-        cardPanel.add(new PostView(), "Posts");
+
+        PostController postController = new PostController();
+        cardPanel.add(postController.getView(), "Posts");
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Navigation");

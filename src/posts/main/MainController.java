@@ -1,4 +1,4 @@
-package posts;
+package posts.main;
 
 import javax.swing.*;
 
