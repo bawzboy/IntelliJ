@@ -10,8 +10,8 @@ import net.miginfocom.swing.*;
 /**
  * @author helge
  */
-public class PostScreen extends JPanel {
-    public PostScreen() {
+public class PostView extends JPanel {
+    public PostView() {
         initComponents();
     }
 

@@ -16,6 +16,10 @@ class UserManagerJDBCTest {
     @BeforeEach
     void initUserManager() {
         userManager = new UserManagerJDBC();
+    }
+
+    @BeforeEach
+    void clearDatabase() {
         String sql = "DELETE FROM users";
         Connection conn = DatabaseConnection.getConnection();
         try {

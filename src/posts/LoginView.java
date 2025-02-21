@@ -13,8 +13,8 @@ import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 /**
  * @author helge
  */
-public class LoginScreen extends JPanel {
-    public LoginScreen() {
+public class LoginView extends JPanel {
+    public LoginView() {
         initComponents();
     }
 

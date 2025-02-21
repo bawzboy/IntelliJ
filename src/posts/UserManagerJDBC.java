@@ -36,9 +36,6 @@ public class UserManagerJDBC implements InterfaceUserManager{
                 foundUser.setName(rs.getString("name"));
                 foundUser.setPasswort(rs.getString("password"));
                 foundUser.setRole(rs.getString("role"));
-                if (rs.next()) {
-                    System.out.println("Multiple users found");
-                }
             } else {
                 System.out.println("No user found");
             }
@@ -78,7 +75,9 @@ public class UserManagerJDBC implements InterfaceUserManager{
             pstmt.setString(3, user.getRole());
             pstmt.setString(4, user.getEmail());
 
-            pstmt.executeUpdate();
+            if (pstmt.executeUpdate() == 0) {
+                throw new RuntimeException();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

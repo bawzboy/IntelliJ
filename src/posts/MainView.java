@@ -2,14 +2,12 @@ package posts;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class PostsView extends JFrame {
+public class MainView extends JFrame {
     private JPanel cardPanel;
     private CardLayout cardLayout;
 
-    public PostsView() {
+    public MainView() {
         setTitle("Posts");
         setSize(400, 320);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,9 +16,9 @@ public class PostsView extends JFrame {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
-        cardPanel.add(new LoginScreen(), "Login");
+        cardPanel.add(new LoginView(), "Login");
         cardPanel.add(new JLabel("Benutzerverwaltung"), "Benutzerverwaltung");
-        cardPanel.add(new PostScreen(), "Posts");
+        cardPanel.add(new PostView(), "Posts");
 
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Navigation");

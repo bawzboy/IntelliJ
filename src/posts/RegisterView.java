@@ -10,8 +10,8 @@ import net.miginfocom.swing.*;
 /**
  * @author helge
  */
-public class RegisterScreen extends JPanel {
-    public RegisterScreen() {
+public class RegisterView extends JPanel {
+    public RegisterView() {
         initComponents();
     }
 

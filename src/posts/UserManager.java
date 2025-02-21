@@ -45,6 +45,7 @@ public class UserManager implements InterfaceUserManager {
             if(user.getEmail().equals(userUpdate.getEmail())) {
                 user.setName(userUpdate.getName());
                 user.setPasswort(userUpdate.getPasswort());
+                user.setRole(userUpdate.getRole());
                 return ;
             }
         }
