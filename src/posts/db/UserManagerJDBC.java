@@ -6,6 +6,17 @@ import java.util.List;
 
 public class UserManagerJDBC implements InterfaceUserManager {
 
+    private static UserManagerJDBC userManagerJDBC;
+
+    public static UserManagerJDBC getInstance() {
+        if(userManagerJDBC == null) {
+            userManagerJDBC = new UserManagerJDBC();
+        }
+        return userManagerJDBC;
+    }
+
+    private UserManagerJDBC() {}
+
     public void createUser(User user) {
         User newUser = new User(user);
         String sql = "INSERT INTO users (email, name, password, role) VALUES (?, ?, ?, ?)";

@@ -9,8 +9,6 @@ import javax.swing.*;
 import net.miginfocom.swing.*;
 import org.jdesktop.beansbinding.*;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
-import posts.db.User;
-import user.InterfaceUserController;
 
 /**
  * @author helge
@@ -18,7 +16,8 @@ import user.InterfaceUserController;
 public class LoginView extends JPanel{
     InterfaceLogin interfaceLogin;
 
-    public LoginView() {
+    public LoginView(InterfaceLogin interfaceLogin) {
+        this.interfaceLogin = interfaceLogin;  // Assign the interface instance
         initComponents();
     }
 

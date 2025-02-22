@@ -6,15 +6,13 @@ import posts.db.UserManagerJDBC;
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
 
-import javax.swing.*;
-
 public class LoginController extends BaseController implements InterfaceCallback, InterfaceLogin {
 
 
     LoginModel loginModel;
 
     public LoginController() {
-        view = new LoginView();
+        view = new LoginView(this);
         loginModel = ((LoginView) view).getObservableList1();
         EventBus.getInstance().registerListener(this);
     }
@@ -26,8 +24,7 @@ public class LoginController extends BaseController implements InterfaceCallback
 
     @Override
     public boolean passwordCheck() {
-        UserManagerJDBC userManagerJDBC = new UserManagerJDBC();
-        User user = userManagerJDBC.readUser(loginModel.getEmail());
+        User user = UserManagerJDBC.getInstance().readUser(loginModel.getEmail());
         if (user == null) {
             return false;
         }

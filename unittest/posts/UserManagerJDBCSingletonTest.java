@@ -14,13 +14,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserManagerJDBCTest {
+class UserManagerJDBCSingletonTest {
     InterfaceUserManager userManager;
-
-    @BeforeEach
-    void initUserManager() {
-        userManager = UserManagerJDBC.getInstance();
-    }
 
     @BeforeEach
     void clearDatabase() {
