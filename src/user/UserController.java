@@ -40,7 +40,7 @@ public class UserController implements InterfaceUserController, InterfaceUserMan
     }
 
     private void initMailSelection() {
-        List<String> mails = new ArrayList<String>();
+        List<String> mails = new ArrayList<>();
         for (UserModel user: userManager.readUsers()) {
             mails.add(user.getEmail());
         }

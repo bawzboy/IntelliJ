@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import posts.messages.BaseMessage;
+import posts.messages.SuccessfulLogin;
+import posts.messages.TextMessage;
 
 class EventBusTest {
 

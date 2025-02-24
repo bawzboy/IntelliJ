@@ -11,8 +11,11 @@ import java.awt.*;
 public class MainView extends JFrame {
     private JPanel cardPanel;
     private CardLayout cardLayout;
+    private MainController mainController;
+    JMenuBar menuBar;
 
-    public MainView() {
+    public MainView(MainController mainController) {
+        this.mainController = mainController;
         setTitle("Posts");
         setSize(400, 320);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,7 +32,7 @@ public class MainView extends JFrame {
         PostController postController = new PostController();
         cardPanel.add(postController.getView(), "Posts");
 
-        JMenuBar menuBar = new JMenuBar();
+        menuBar = new JMenuBar();
         JMenu menu = new JMenu("Navigation");
 
         JMenuItem benutzerverwaltungItem = new JMenuItem("Benutzer anzeigen");
@@ -44,9 +47,15 @@ public class MainView extends JFrame {
         menu.add(postsItem);
         menu.add(logoutItem);
         menuBar.add(menu);
-        setJMenuBar(menuBar);
 
+        setJMenuBar(menuBar);
         add(cardPanel);
+
+        setNavigationVisibility(false);
+    }
+
+    protected void setNavigationVisibility(boolean visible) {
+        menuBar.setVisible(visible);
     }
 
 }

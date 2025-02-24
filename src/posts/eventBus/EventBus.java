@@ -1,5 +1,7 @@
 package posts.eventBus;
 
+import posts.messages.BaseMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 

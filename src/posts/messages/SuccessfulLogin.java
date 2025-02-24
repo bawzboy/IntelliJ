@@ -1,6 +1,6 @@
-package posts.eventBus;
+package posts.messages;
 
-public class SuccessfulLogin extends BaseMessage{
+public class SuccessfulLogin extends BaseMessage {
     String email;
 
     public SuccessfulLogin(String email) {

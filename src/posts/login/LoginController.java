@@ -3,13 +3,12 @@ package posts.login;
 import posts.BaseController;
 import posts.db.User;
 import posts.db.UserManagerJDBC;
-import posts.eventBus.BaseMessage;
+import posts.messages.BaseMessage;
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
-import posts.eventBus.SuccessfulLogin;
+import posts.messages.SuccessfulLogin;
 
 public class LoginController extends BaseController implements InterfaceCallback, InterfaceLogin {
-
 
     LoginModel loginModel;
 

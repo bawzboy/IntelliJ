@@ -1,4 +1,4 @@
-package posts.eventBus;
+package posts.messages;
 
 public abstract class BaseMessage {
     final String messageType;

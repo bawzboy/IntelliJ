@@ -1,4 +1,4 @@
-package posts.eventBus;
+package posts.messages;
 
 public class TextMessage extends BaseMessage{
     String message;

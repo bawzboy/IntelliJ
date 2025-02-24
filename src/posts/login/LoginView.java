@@ -17,7 +17,7 @@ public class LoginView extends JPanel{
     InterfaceLogin interfaceLogin;
 
     public LoginView(InterfaceLogin interfaceLogin) {
-        this.interfaceLogin = interfaceLogin;  // Assign the interface instance
+        this.interfaceLogin = interfaceLogin;
         initComponents();
     }
 
