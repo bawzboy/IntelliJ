@@ -1,9 +1,9 @@
 package posts.main;
 
+import posts.benutzerverwaltung.BenutzerverwaltungScreen;
 import posts.login.LoginController;
+import posts.menu.MenuController;
 import posts.post.PostController;
-import posts.post.PostView;
-import posts.login.LoginView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class MainView extends JFrame {
     private JPanel cardPanel;
     private CardLayout cardLayout;
     private MainController mainController;
-    JMenuBar menuBar;
+    private MenuController menuController;
 
     public MainView(MainController mainController) {
         this.mainController = mainController;
@@ -27,35 +27,16 @@ public class MainView extends JFrame {
         LoginController loginController = new LoginController();
         cardPanel.add(loginController.getView(), "Login");
 
-        cardPanel.add(new JLabel("Benutzerverwaltung"), "Benutzerverwaltung");
+        cardPanel.add(new BenutzerverwaltungScreen(), "Benutzerverwaltung");
 
         PostController postController = new PostController();
         cardPanel.add(postController.getView(), "Posts");
 
-        menuBar = new JMenuBar();
-        JMenu menu = new JMenu("Navigation");
+        menuController = new MenuController();
+        setJMenuBar(menuController.createMenuBar(cardLayout, cardPanel));
 
-        JMenuItem benutzerverwaltungItem = new JMenuItem("Benutzer anzeigen");
-        JMenuItem postsItem = new JMenuItem("Neuen Post erstellen");
-        JMenuItem logoutItem = new JMenuItem("Logout");
-
-        benutzerverwaltungItem.addActionListener(e -> cardLayout.show(cardPanel, "Benutzerverwaltung"));
-        postsItem.addActionListener(e -> cardLayout.show(cardPanel, "Posts"));
-        logoutItem.addActionListener(e -> cardLayout.show(cardPanel, "Login"));
-
-        menu.add(benutzerverwaltungItem);
-        menu.add(postsItem);
-        menu.add(logoutItem);
-        menuBar.add(menu);
-
-        setJMenuBar(menuBar);
         add(cardPanel);
-
-        setNavigationVisibility(false);
-    }
-
-    protected void setNavigationVisibility(boolean visible) {
-        menuBar.setVisible(visible);
+        menuController.setNavigationVisibility(false);
     }
 
 }

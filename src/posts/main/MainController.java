@@ -21,13 +21,6 @@ public class MainController implements InterfaceCallback {
 
     @Override
     public void handleMessage(BaseMessage baseMessage) {
-        switch(baseMessage.getMessageType()) {
-            case "SuccessfulLogin":
-                view.setNavigationVisibility(true);
-                break;
-            case "Logout":
-                view.setNavigationVisibility(false);
-                break;
-        }
+
     }
 }
