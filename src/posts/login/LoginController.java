@@ -3,8 +3,10 @@ package posts.login;
 import posts.BaseController;
 import posts.db.User;
 import posts.db.UserManagerJDBC;
+import posts.eventBus.BaseMessage;
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
+import posts.eventBus.SuccessfulLogin;
 
 public class LoginController extends BaseController implements InterfaceCallback, InterfaceLogin {
 
@@ -18,8 +20,11 @@ public class LoginController extends BaseController implements InterfaceCallback
     }
 
     @Override
-    public void handleMessage(String s) {
-
+    public void handleMessage(BaseMessage baseMessage) {
+        switch(baseMessage.getMessageType()) {
+            default:
+                break;
+        }
     }
 
     @Override
@@ -29,7 +34,7 @@ public class LoginController extends BaseController implements InterfaceCallback
             return false;
         }
         if (user.getPasswort().equals(loginModel.getPassword())) {
-            EventBus.getInstance().sendMessage("Login successful");
+            EventBus.getInstance().sendMessage(new SuccessfulLogin(loginModel.getEmail()));
         }
         return false;
     }

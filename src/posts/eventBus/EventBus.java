@@ -18,7 +18,7 @@ public class EventBus implements InterfaceEventBus{
 
     private List<InterfaceCallback> callbacks = new ArrayList<>();
 
-    public void sendMessage(String message) {
+    public void sendMessage(BaseMessage message) {
         for(InterfaceCallback callback : callbacks) {
             callback.handleMessage(message);
         }

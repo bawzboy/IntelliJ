@@ -21,14 +21,15 @@ class EventBusTest {
 
     @Test
     void testSendeMessageHelloWorld() {
-        iEventBus.sendMessage("Hello World");
+        iEventBus.sendMessage(new TextMessage("Hello World"));
     }
 
     @Test
     void testRegisterListener() {
         iEventBus.registerListener(new InterfaceCallback() {
             @Override
-            public void handleMessage(String s) {
+            public void handleMessage(BaseMessage baseMessage) {
+
             }
         });
     }
@@ -40,12 +41,12 @@ class EventBusTest {
     void testRegisterListenerUndSendeMessageAnCallback() {
         iEventBus.registerListener(new InterfaceCallback() {
             @Override
-            public void handleMessage(String s) {
-                erhalteneMessage = s;
+            public void handleMessage(BaseMessage baseMessage) {
+                erhalteneMessage = (String) ((TextMessage) baseMessage).getMessageContent();
             }
         });
         assertEquals("", erhalteneMessage);
-        iEventBus.sendMessage("Hello World über den EventBus");
+        iEventBus.sendMessage(new TextMessage("Hello World über den EventBus"));
         assertEquals("Hello World über den EventBus", erhalteneMessage);
 
     }
@@ -54,15 +55,15 @@ class EventBusTest {
     void testRegisterListenerUndSendeMultipleMessageAnCallback() {
         iEventBus.registerListener(new InterfaceCallback() {
             @Override
-            public void handleMessage(String s) {
-                erhalteneMessage = s;
+            public void handleMessage(BaseMessage baseMessage) {
+                erhalteneMessage = (String) ((TextMessage) baseMessage).getMessageContent();
             }
         });
         assertEquals("", erhalteneMessage);
-        iEventBus.sendMessage("Hello World über den EventBus");
+        iEventBus.sendMessage(new TextMessage("Hello World über den EventBus"));
         assertEquals("Hello World über den EventBus", erhalteneMessage);
 
-        iEventBus.sendMessage("Hello World über den EventBus2");
+        iEventBus.sendMessage(new TextMessage("Hello World über den EventBus2"));
         assertEquals("Hello World über den EventBus2", erhalteneMessage);
 
     }
@@ -72,21 +73,22 @@ class EventBusTest {
     void testRegisterMultipleListenerUndSendeMessageAnCallback() {
         iEventBus.registerListener(new InterfaceCallback() {
             @Override
-            public void handleMessage(String s) {
-                erhalteneMessage = s;
-
+            public void handleMessage(BaseMessage baseMessage) {
+                erhalteneMessage = (String) ((TextMessage) baseMessage).getMessageContent();
             }
+
         });
         iEventBus.registerListener(new InterfaceCallback() {
             @Override
-            public void handleMessage(String s) {
-                erhalteneMessage2 = s;
+            public void handleMessage(BaseMessage baseMessage) {
+                erhalteneMessage2 = (String) ((TextMessage) baseMessage).getMessageContent();
             }
+
         });
 
         assertEquals("", erhalteneMessage);
 
-        iEventBus.sendMessage("Hello World über den EventBus");
+        iEventBus.sendMessage(new TextMessage("Hello World über den EventBus"));
         assertEquals("Hello World über den EventBus", erhalteneMessage);
         assertEquals("Hello World über den EventBus", erhalteneMessage2);
 
@@ -96,29 +98,66 @@ class EventBusTest {
     void testRegisterMultipleListenerUndSendeMultipleMessageAnCallback() {
         iEventBus.registerListener(new InterfaceCallback() {
             @Override
-            public void handleMessage(String s) {
-                erhalteneMessage = s;
-
+            public void handleMessage(BaseMessage baseMessage) {
+                erhalteneMessage = (String) ((TextMessage) baseMessage).getMessageContent();
             }
+
         });
         iEventBus.registerListener(new InterfaceCallback() {
             @Override
-            public void handleMessage(String s) {
-                erhalteneMessage2 = s;
-
+            public void handleMessage(BaseMessage baseMessage) {
+                erhalteneMessage2 = (String) ((TextMessage) baseMessage).getMessageContent();
             }
+
         });
 
         assertEquals("", erhalteneMessage);
 
-        iEventBus.sendMessage("Hello World über den EventBus");
+        iEventBus.sendMessage(new TextMessage("Hello World über den EventBus"));
         assertEquals("Hello World über den EventBus", erhalteneMessage);
         assertEquals("Hello World über den EventBus", erhalteneMessage2);
 
-        iEventBus.sendMessage("Message 2 über den EventBus");
+        iEventBus.sendMessage(new TextMessage("Message 2 über den EventBus"));
         assertEquals("Message 2 über den EventBus", erhalteneMessage);
         assertEquals("Message 2 über den EventBus", erhalteneMessage2);
 
     }
 
+    String email;
+
+    @Test
+    void test2UnterschiedlicheMessageTypen() {
+        iEventBus.registerListener(new InterfaceCallback() {
+            @Override
+            public void handleMessage(BaseMessage baseMessage) {
+                switch (baseMessage.getMessageType()){
+                    case "TextMessage":
+                        erhalteneMessage = (String) ((TextMessage) baseMessage).getMessageContent();
+                        break;
+                    case "SuccessfulLogin":
+                        email = (String) ((SuccessfulLogin) baseMessage).getMessageContent();
+                        break;
+                }
+            }
+        });
+        iEventBus.sendMessage(new TextMessage("Hello World über den EventBus"));
+        iEventBus.sendMessage(new SuccessfulLogin("helge@me.com"));
+        assertEquals("Hello World über den EventBus", erhalteneMessage);
+        assertEquals("helge@me.com", email);
+    }
+
+    @Test
+        void testDifferentMessageTypes() {
+            iEventBus.registerListener(new InterfaceCallback() {
+                @Override
+                public void handleMessage(BaseMessage baseMessage) {
+                    erhalteneMessage = baseMessage.getMessageType();
+                }
+            });
+        iEventBus.sendMessage(new TextMessage(""));
+        assertEquals("TextMessage", erhalteneMessage);
+        iEventBus.sendMessage(new SuccessfulLogin(""));
+        assertEquals("SuccessfulLogin",erhalteneMessage);
+
+    }
 }

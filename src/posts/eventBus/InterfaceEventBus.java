@@ -2,7 +2,7 @@ package posts.eventBus;
 
 public interface InterfaceEventBus {
 
-    void sendMessage(String string);
+    void sendMessage(BaseMessage baseMessage);
 
     void registerListener(InterfaceCallback callback);
 }
