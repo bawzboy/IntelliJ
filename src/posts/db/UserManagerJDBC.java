@@ -1,5 +1,10 @@
 package posts.db;
 
+import posts.eventBus.EventBus;
+import posts.messages.UserCreated;
+import posts.messages.UserDeleted;
+import posts.messages.UserUpdated;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +37,7 @@ public class UserManagerJDBC implements InterfaceUserManager {
         } catch (SQLException e) {
             throw new RuntimeException("Database error occurred", e);
         }
+        EventBus.getInstance().sendMessage(new UserCreated());
     }
 
     public User readUser(String email) {
@@ -93,6 +99,7 @@ public class UserManagerJDBC implements InterfaceUserManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        EventBus.getInstance().sendMessage(new UserUpdated());
     }
 
     public void deleteUser(String email) {
@@ -106,6 +113,7 @@ public class UserManagerJDBC implements InterfaceUserManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        EventBus.getInstance().sendMessage(new UserDeleted());
     }
 
 }
