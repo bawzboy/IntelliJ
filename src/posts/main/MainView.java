@@ -1,6 +1,6 @@
 package posts.main;
 
-import posts.benutzerverwaltung.BenutzerverwaltungScreen;
+import posts.adminConsole.AdminConsoleView;
 import posts.login.LoginController;
 import posts.navigation.NavigationController;
 import posts.post.PostController;
@@ -14,6 +14,8 @@ public class MainView extends JFrame {
     private MainController mainController;
     private NavigationController navigationController;
 
+
+
     public MainView(MainController mainController) {
         this.mainController = mainController;
         setTitle("Posts");
@@ -24,19 +26,26 @@ public class MainView extends JFrame {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
-        LoginController loginController = new LoginController();
-        cardPanel.add(loginController.getView(), "Login");
+//        LoginController loginController = new LoginController();
+//        cardPanel.add(loginController.getView(), "Login");
+//
+//        cardPanel.add(new AdminConsoleView(), "Benutzerverwaltung");
 
-        cardPanel.add(new BenutzerverwaltungScreen(), "Benutzerverwaltung");
+//        PostController postController = new PostController();
+//        cardPanel.add(postController.getView(), "Posts");
 
-        PostController postController = new PostController();
-        cardPanel.add(postController.getView(), "Posts");
+        cardPanel.add(new JPanel(), "Hugo");
 
         navigationController = new NavigationController();
         setJMenuBar(navigationController.createMenuBar(cardLayout, cardPanel));
 
         add(cardPanel);
         navigationController.setNavigationVisibility(false);
+    }
+
+    public void addJPanel(JPanel view, String text) {
+        cardPanel.add(view, text);
+        cardLayout.show(cardPanel, text);
     }
 
 }

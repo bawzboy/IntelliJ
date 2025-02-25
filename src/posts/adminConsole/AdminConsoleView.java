@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Feb 19 18:07:06 CET 2025
  */
 
-package posts.benutzerverwaltung;
+package posts.adminConsole;
 
 import javax.swing.*;
 import javax.swing.table.*;
@@ -11,8 +11,8 @@ import net.miginfocom.swing.*;
 /**
  * @author helge
  */
-public class BenutzerverwaltungScreen extends JPanel {
-    public BenutzerverwaltungScreen() {
+public class AdminConsoleView extends JPanel {
+    public AdminConsoleView() {
         initComponents();
     }
 

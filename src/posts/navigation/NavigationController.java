@@ -2,13 +2,14 @@ package posts.navigation;
 
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
+import posts.main.ControllerInterface;
 import posts.messages.BaseMessage;
 import posts.messages.Logout;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class NavigationController implements InterfaceCallback {
+public class NavigationController implements InterfaceCallback, ControllerInterface {
     private JMenuBar menuBar;
 
     public NavigationController() {
@@ -62,5 +63,10 @@ public class NavigationController implements InterfaceCallback {
                 setNavigationVisibility(false);
                 break;
         }
+    }
+
+    @Override
+    public void init() {
+        System.out.println("NavigationController initialized");
     }
 }
