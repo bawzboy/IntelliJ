@@ -2,7 +2,7 @@ package posts.main;
 
 import posts.benutzerverwaltung.BenutzerverwaltungScreen;
 import posts.login.LoginController;
-import posts.menu.MenuController;
+import posts.navigation.NavigationController;
 import posts.post.PostController;
 
 import javax.swing.*;
@@ -12,7 +12,7 @@ public class MainView extends JFrame {
     private JPanel cardPanel;
     private CardLayout cardLayout;
     private MainController mainController;
-    private MenuController menuController;
+    private NavigationController navigationController;
 
     public MainView(MainController mainController) {
         this.mainController = mainController;
@@ -32,11 +32,11 @@ public class MainView extends JFrame {
         PostController postController = new PostController();
         cardPanel.add(postController.getView(), "Posts");
 
-        menuController = new MenuController();
-        setJMenuBar(menuController.createMenuBar(cardLayout, cardPanel));
+        navigationController = new NavigationController();
+        setJMenuBar(navigationController.createMenuBar(cardLayout, cardPanel));
 
         add(cardPanel);
-        menuController.setNavigationVisibility(false);
+        navigationController.setNavigationVisibility(false);
     }
 
 }

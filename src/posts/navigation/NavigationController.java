@@ -1,4 +1,4 @@
-package posts.menu;
+package posts.navigation;
 
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
@@ -8,10 +8,10 @@ import posts.messages.Logout;
 import javax.swing.*;
 import java.awt.*;
 
-public class MenuController implements InterfaceCallback {
+public class NavigationController implements InterfaceCallback {
     private JMenuBar menuBar;
 
-    public MenuController() {
+    public NavigationController() {
         this.menuBar = new JMenuBar();
         EventBus.getInstance().registerListener(this);
     }
@@ -23,8 +23,14 @@ public class MenuController implements InterfaceCallback {
         JMenuItem postsItem = new JMenuItem("Neuen Post erstellen");
         JMenuItem logoutItem = new JMenuItem("Logout");
 
-        benutzerverwaltungItem.addActionListener(e -> cardLayout.show(cardPanel, "Benutzerverwaltung"));
-        postsItem.addActionListener(e -> cardLayout.show(cardPanel, "Posts"));
+        benutzerverwaltungItem.addActionListener(e -> {
+            cardLayout.show(cardPanel, "Benutzerverwaltung");
+        });
+
+        postsItem.addActionListener(e -> {
+            cardLayout.show(cardPanel, "Posts");
+        });
+
         logoutItem.addActionListener(e -> {
             cardLayout.show(cardPanel, "Login");
             EventBus.getInstance().sendMessage(new Logout());
