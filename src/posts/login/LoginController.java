@@ -7,7 +7,7 @@ import posts.main.ControllerInterface;
 import posts.messages.BaseMessage;
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
-import posts.messages.RegisterViewMessage;
+import posts.messages.RegisterView;
 import posts.messages.SuccessfulLogin;
 
 public class LoginController extends BaseController implements InterfaceCallback, InterfaceLogin, ControllerInterface {
@@ -44,6 +44,6 @@ public class LoginController extends BaseController implements InterfaceCallback
         EventBus.getInstance().registerListener(this);
         view = new LoginView(this);
         loginModel = ((LoginView) view).getObservableList1();
-        EventBus.getInstance().sendMessage(new RegisterViewMessage(view, "Login"));
+        EventBus.getInstance().sendMessage(new RegisterView(view, "Login"));
     }
 }

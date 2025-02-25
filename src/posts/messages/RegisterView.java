@@ -2,12 +2,12 @@ package posts.messages;
 
 import javax.swing.*;
 
-public class RegisterViewMessage extends BaseMessage{
+public class RegisterView extends BaseMessage{
     JPanel view;
     String nameView;
 
-    public RegisterViewMessage(JPanel view, String nameView) {
-        super("RegisterViewMessage");
+    public RegisterView(JPanel view, String nameView) {
+        super("RegisterView");
         this.view = view;
         this.nameView = nameView;
     }

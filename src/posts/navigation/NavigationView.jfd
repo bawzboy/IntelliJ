@@ -1,0 +1,63 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.6" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class net.miginfocom.swing.MigLayout ) {
+			"$layoutConstraints": "hidemode 3"
+			"$columnConstraints": "[fill][fill]"
+			"$rowConstraints": "[][][]"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				auxiliary() {
+					"JavaCodeGenerator.variableGetter": true
+				}
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "Navigation"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": "Benutzerverwaltung"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem1", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": "Post erstellen"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem2", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem3"
+						"text": "Logout"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem3", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem4"
+						"text": "Login"
+					} )
+				} )
+			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
+				"value": "cell 0 0"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+		add( new FormNonVisual( "posts.navigation.NavigationModel" ) {
+			name: "observableList1"
+			auxiliary() {
+				"JavaCodeGenerator.variableGetter": true
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 445, 30 )
+		} )
+		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
+			"name": "bindingGroup"
+			addBinding( new FormBinding( "observableList1", "loginNotSuccessful", "menuItem4", "visible" ) )
+			addBinding( new FormBinding( "observableList1", "loginSuccessful", "menuItem1", "visible" ) )
+			addBinding( new FormBinding( "observableList1", "loginSuccessful", "menuItem2", "visible" ) )
+			addBinding( new FormBinding( "observableList1", "loginSuccessful", "menuItem3", "visible" ) )
+		} )
+	}
+}

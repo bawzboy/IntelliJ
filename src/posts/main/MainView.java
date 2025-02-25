@@ -12,7 +12,6 @@ public class MainView extends JFrame {
     private JPanel cardPanel;
     private CardLayout cardLayout;
     private MainController mainController;
-    private NavigationController navigationController;
 
 
 
@@ -28,19 +27,16 @@ public class MainView extends JFrame {
 
 //        LoginController loginController = new LoginController();
 //        cardPanel.add(loginController.getView(), "Login");
-//
+
 //        cardPanel.add(new AdminConsoleView(), "Benutzerverwaltung");
 
-//        PostController postController = new PostController();
-//        cardPanel.add(postController.getView(), "Posts");
+        PostController postController = new PostController();
+        cardPanel.add(postController.getView(), "Posts");
 
         cardPanel.add(new JPanel(), "Hugo");
 
-        navigationController = new NavigationController();
-        setJMenuBar(navigationController.createMenuBar(cardLayout, cardPanel));
-
         add(cardPanel);
-        navigationController.setNavigationVisibility(false);
+//        navigationController.setNavigationVisibility(false);
     }
 
     public void addJPanel(JPanel view, String text) {
@@ -48,5 +44,12 @@ public class MainView extends JFrame {
         cardLayout.show(cardPanel, text);
     }
 
+    public void addJMenuBar(JMenuBar navigationBar) {
+        setJMenuBar(navigationBar);
+    }
+
+    public void showNewPage(String pageName) {
+        cardLayout.show(cardPanel, pageName);
+    }
 }
 

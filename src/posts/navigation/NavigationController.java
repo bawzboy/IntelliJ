@@ -3,50 +3,26 @@ package posts.navigation;
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
 import posts.main.ControllerInterface;
-import posts.messages.BaseMessage;
-import posts.messages.Logout;
+import posts.messages.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class NavigationController implements InterfaceCallback, ControllerInterface {
     private JMenuBar menuBar;
+    private NavigationView navigationView;
 
     public NavigationController() {
-        this.menuBar = new JMenuBar();
-        EventBus.getInstance().registerListener(this);
+        navigationView = new NavigationView();
     }
 
     public JMenuBar createMenuBar(CardLayout cardLayout, JPanel cardPanel) {
-        JMenu menu = new JMenu("Navigation");
-
-        JMenuItem benutzerverwaltungItem = new JMenuItem("Benutzer anzeigen");
-        JMenuItem postsItem = new JMenuItem("Neuen Post erstellen");
-        JMenuItem logoutItem = new JMenuItem("Logout");
-
-        benutzerverwaltungItem.addActionListener(e -> {
-            cardLayout.show(cardPanel, "Benutzerverwaltung");
-        });
-
-        postsItem.addActionListener(e -> {
-            cardLayout.show(cardPanel, "Posts");
-        });
-
-        logoutItem.addActionListener(e -> {
-            cardLayout.show(cardPanel, "Login");
-            EventBus.getInstance().sendMessage(new Logout());
-        });
-
-        menu.add(benutzerverwaltungItem);
-        menu.add(postsItem);
-        menu.add(logoutItem);
-        menuBar.add(menu);
-
-        return menuBar;
+        return navigationView.getMenuBar1();
     }
 
     public void setNavigationVisibility(boolean visible) {
-        menuBar.setVisible(visible);
+        navigationView.getObservableList1().setLoginSuccessful(visible);
+        navigationView.getObservableList1().setLoginNotSuccessful(!visible);
     }
 
     public JMenuBar getMenuBar() {
@@ -68,5 +44,8 @@ public class NavigationController implements InterfaceCallback, ControllerInterf
     @Override
     public void init() {
         System.out.println("NavigationController initialized");
+        this.menuBar = createMenuBar(null, null);
+        EventBus.getInstance().registerListener(this);
+        EventBus.getInstance().sendMessage(new RegisterNavigation(menuBar));
     }
 }
