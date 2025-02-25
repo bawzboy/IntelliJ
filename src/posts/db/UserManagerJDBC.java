@@ -1,6 +1,9 @@
 package posts.db;
 
 import posts.eventBus.EventBus;
+import posts.eventBus.InterfaceCallback;
+import posts.main.ControllerInterface;
+import posts.messages.BaseMessage;
 import posts.messages.UserCreated;
 import posts.messages.UserDeleted;
 import posts.messages.UserUpdated;
@@ -9,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserManagerJDBC implements InterfaceUserManager {
+public class UserManagerJDBC implements InterfaceUserManager, InterfaceCallback, ControllerInterface {
 
     private static UserManagerJDBC userManagerJDBC;
 
@@ -116,4 +119,15 @@ public class UserManagerJDBC implements InterfaceUserManager {
         EventBus.getInstance().sendMessage(new UserDeleted());
     }
 
+    @Override
+    public void handleMessage(BaseMessage baseMessage) {
+
+    }
+
+    @Override
+    public void init() {
+        System.out.println("UserManagaerJDBC initialized");
+        EventBus.getInstance().registerListener(this);
+
+    }
 }

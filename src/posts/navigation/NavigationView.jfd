@@ -32,10 +32,6 @@ new FormModel {
 						"text": "Logout"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem3", true ) )
 					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuItem4"
-						"text": "Login"
-					} )
 				} )
 			}, new FormLayoutConstraints( class net.miginfocom.layout.CC ) {
 				"value": "cell 0 0"
@@ -54,10 +50,10 @@ new FormModel {
 		} )
 		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
 			"name": "bindingGroup"
-			addBinding( new FormBinding( "observableList1", "loginNotSuccessful", "menuItem4", "visible" ) )
 			addBinding( new FormBinding( "observableList1", "loginSuccessful", "menuItem1", "visible" ) )
 			addBinding( new FormBinding( "observableList1", "loginSuccessful", "menuItem2", "visible" ) )
 			addBinding( new FormBinding( "observableList1", "loginSuccessful", "menuItem3", "visible" ) )
+			addBinding( new FormBinding( "observableList1", "loginSuccessful", "menu1", "visible" ) )
 		} )
 	}
 }

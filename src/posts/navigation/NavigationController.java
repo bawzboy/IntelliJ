@@ -25,10 +25,6 @@ public class NavigationController implements InterfaceCallback, ControllerInterf
         navigationView.getObservableList1().setLoginNotSuccessful(!visible);
     }
 
-    public JMenuBar getMenuBar() {
-        return menuBar;
-    }
-
     @Override
     public void handleMessage(BaseMessage baseMessage) {
         switch(baseMessage.getMessageType()) {

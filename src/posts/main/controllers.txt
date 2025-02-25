@@ -1,3 +1,8 @@
 posts.main.MainController
+posts.db.UserManagerJDBC
 posts.navigation.NavigationController
+posts.post.PostController
+posts.adminConsole.AdminConsoleController
+
 posts.login.LoginController
+// der letzte Controller in der Liste wird als Startseite angezeigt

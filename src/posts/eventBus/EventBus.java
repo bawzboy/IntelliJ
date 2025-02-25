@@ -29,7 +29,6 @@ public class EventBus implements InterfaceEventBus{
     @Override
     public void registerListener(InterfaceCallback  callback) {
         this.callbacks.add(callback);
-
     }
 
 }
