@@ -30,8 +30,8 @@ public class LoginController extends BaseController implements InterfaceCallback
     public boolean passwordCheck() {
         User user = UserManagerJDBC.getInstance().readUser(loginModel.getEmail());
         if (user == null) {
-            return false;
-        }
+            return true;
+           }
         if (user.getPasswort().equals(loginModel.getPassword())) {
             EventBus.getInstance().sendMessage(new SuccessfulLogin(loginModel.getEmail()));
         }

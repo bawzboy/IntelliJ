@@ -8,6 +8,7 @@ import posts.messages.BaseMessage;
 import posts.messages.RegisterView;
 
 public class AdminConsoleController extends BaseController implements ControllerInterface, InterfaceCallback {
+
     @Override
     public void init() {
         System.out.println("AdminConsoleController initialized");

@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserManagerJDBC implements InterfaceUserManager, InterfaceCallback, ControllerInterface {
+public class UserManagerJDBC implements InterfaceUserManager {
 
     private static UserManagerJDBC userManagerJDBC;
 
@@ -119,15 +119,15 @@ public class UserManagerJDBC implements InterfaceUserManager, InterfaceCallback,
         EventBus.getInstance().sendMessage(new UserDeleted());
     }
 
-    @Override
-    public void handleMessage(BaseMessage baseMessage) {
-
-    }
-
-    @Override
-    public void init() {
-        System.out.println("UserManagaerJDBC initialized");
-        EventBus.getInstance().registerListener(this);
-
-    }
+//    @Override
+//    public void handleMessage(BaseMessage baseMessage) {
+//
+//    }
+//
+//    @Override
+//    public void init() {
+//        System.out.println("UserManagaerJDBC initialized");
+//        EventBus.getInstance().registerListener(this.getInstance());
+//
+//    }
 }
