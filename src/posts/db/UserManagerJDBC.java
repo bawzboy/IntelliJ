@@ -33,7 +33,7 @@ public class UserManagerJDBC implements InterfaceUserManager {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, newUser.getEmail());
             pstmt.setString(2, newUser.getName());
-            pstmt.setString(3, newUser.getPasswort());
+            pstmt.setString(3, newUser.getPassword());
             pstmt.setString(4, newUser.getRole());
 
             pstmt.executeUpdate();
@@ -55,7 +55,7 @@ public class UserManagerJDBC implements InterfaceUserManager {
             if (rs.next()) {
                 foundUser.setEmail(rs.getString("email"));
                 foundUser.setName(rs.getString("name"));
-                foundUser.setPasswort(rs.getString("password"));
+                foundUser.setPassword(rs.getString("password"));
                 foundUser.setRole(rs.getString("role"));
             } else {
                 System.out.println("No user found");
@@ -77,7 +77,7 @@ public class UserManagerJDBC implements InterfaceUserManager {
                 User foundUser = new User();
                 foundUser.setEmail(rs.getString("email"));
                 foundUser.setName(rs.getString("name"));
-                foundUser.setPasswort(rs.getString("password"));
+                foundUser.setPassword(rs.getString("password"));
                 users.add(foundUser);
             }
         } catch (SQLException e) {
@@ -92,7 +92,7 @@ public class UserManagerJDBC implements InterfaceUserManager {
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user.getName());
-            pstmt.setString(2, user.getPasswort());
+            pstmt.setString(2, user.getPassword());
             pstmt.setString(3, user.getRole());
             pstmt.setString(4, user.getEmail());
 

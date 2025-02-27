@@ -1,18 +1,16 @@
 package posts.login;
 
 import posts.BaseController;
-import posts.db.User;
-import posts.db.UserManagerJDBC;
+import posts.rest.User;
 import posts.main.ControllerInterface;
-import posts.messages.BaseMessage;
+import posts.messages.*;
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
-import posts.messages.RegisterView;
-import posts.messages.SuccessfulLogin;
 
 public class LoginController extends BaseController implements InterfaceCallback, InterfaceLogin, ControllerInterface {
 
     LoginModel loginModel;
+    User user;
 
     public LoginController() {
 
@@ -21,21 +19,22 @@ public class LoginController extends BaseController implements InterfaceCallback
     @Override
     public void handleMessage(BaseMessage baseMessage) {
         switch(baseMessage.getMessageType()) {
-            default:
+            case "ReturnUser":
+                ReturnUser returnUser = (ReturnUser) baseMessage;
+                user = (User) returnUser.getMessageContent();
+                if (user == null) {
+                    System.out.println("User not found");
+                }
+                if (user.getPassword().equals(loginModel.getPassword())) {
+                    EventBus.getInstance().sendMessage(new SuccessfulLogin(loginModel.getEmail()));
+                }
                 break;
         }
     }
 
     @Override
-    public boolean passwordCheck() {
-        User user = UserManagerJDBC.getInstance().readUser(loginModel.getEmail());
-        if (user == null) {
-            return true;
-           }
-        if (user.getPasswort().equals(loginModel.getPassword())) {
-            EventBus.getInstance().sendMessage(new SuccessfulLogin(loginModel.getEmail()));
-        }
-        return false;
+    public void passwordCheck() {
+        EventBus.getInstance().sendMessage(new RequestUser(loginModel.getEmail()));
     }
 
     @Override

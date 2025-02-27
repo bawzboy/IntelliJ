@@ -5,7 +5,7 @@ import java.util.Objects;
 public class User {
     String email;
     String name;
-    String passwort;
+    String password;
     String role;
 
     /**
@@ -18,21 +18,21 @@ public class User {
     /**
      * @param email
      * @param name
-     * @param passwort
+     * @param password
      * @param role
      */
-    public User(String email, String name, String passwort, String role) {
+    public User(String email, String name, String password, String role) {
         super();
         this.email = email;
         this.name = name;
-        this.passwort = passwort;
+        this.password = password;
         this.role = role;
     }
 
     public User(User user) {
         this.email = new String(user.getEmail());
         this.name = new String(user.getName());
-        this.passwort = new String(user.getPasswort());
+        this.password = new String(user.getPassword());
         this.role = new String(user.getRole());
     }
 
@@ -48,11 +48,11 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-    public String getPasswort() {
-        return passwort;
+    public String getPassword() {
+        return password;
     }
-    public void setPasswort(String passwort) {
-        this.passwort = passwort;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRole() {
@@ -67,12 +67,12 @@ public class User {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(email, user.email) && Objects.equals(name, user.name) && Objects.equals(passwort, user.passwort) && Objects.equals(role, user.role);
+        return Objects.equals(email, user.email) && Objects.equals(name, user.name) && Objects.equals(password, user.password) && Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, name, passwort, role);
+        return Objects.hash(email, name, password, role);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class User {
         return "User{" +
                 "email='" + email + '\'' +
                 ", name='" + name + '\'' +
-                ", passwort='" + passwort + '\'' +
+                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }

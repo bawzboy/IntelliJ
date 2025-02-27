@@ -25,10 +25,6 @@ public class LoginView extends JPanel{
         interfaceLogin.passwordCheck();
     }
 
-    private void registrierenButton(ActionEvent e) {
-        // TODO add your code here
-    }
-
     public LoginModel getObservableList1() {
         return observableList1;
     }
@@ -41,17 +37,16 @@ public class LoginView extends JPanel{
         label2 = new JLabel();
         passwordField1 = new JPasswordField();
         button1 = new JButton();
-        button2 = new JButton();
         observableList1 = new LoginModel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-        . swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing
-        . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-        Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-        ) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName (
-        ) )) throw new RuntimeException( ); }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new
+        javax . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax
+        . swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java
+        . awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,12 ) ,java . awt
+        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .
+        PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .
+        equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new MigLayout(
             "hidemode 3",
             // columns
@@ -78,18 +73,13 @@ public class LoginView extends JPanel{
         button1.addActionListener(e -> loginButton(e));
         add(button1, "cell 1 2");
 
-        //---- button2 ----
-        button2.setText("Registrieren");
-        button2.addActionListener(e -> registrierenButton(e));
-        add(button2, "cell 1 3");
-
         //---- bindings ----
         bindingGroup = new BindingGroup();
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
             observableList1, BeanProperty.create("email"),
             textField1, BeanProperty.create("text")));
         bindingGroup.addBinding(Bindings.createAutoBinding(UpdateStrategy.READ_WRITE,
-            observableList1, BeanProperty.create("passwort"),
+            observableList1, BeanProperty.create("password"),
             passwordField1, BeanProperty.create("text")));
         bindingGroup.bind();
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -102,7 +92,6 @@ public class LoginView extends JPanel{
     private JLabel label2;
     private JPasswordField passwordField1;
     private JButton button1;
-    private JButton button2;
     private LoginModel observableList1;
     private BindingGroup bindingGroup;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on

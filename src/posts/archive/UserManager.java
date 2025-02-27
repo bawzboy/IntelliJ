@@ -47,7 +47,7 @@ public class UserManager implements InterfaceUserManager {
         for(User user : userListe) {
             if(user.getEmail().equals(userUpdate.getEmail())) {
                 user.setName(userUpdate.getName());
-                user.setPasswort(userUpdate.getPasswort());
+                user.setPassword(userUpdate.getPassword());
                 user.setRole(userUpdate.getRole());
                 return ;
             }

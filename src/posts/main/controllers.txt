@@ -1,5 +1,6 @@
 posts.main.MainController
 # posts.db.UserManagerJDBC
+posts.rest.UserManagerREST
 posts.navigation.NavigationController
 posts.post.PostController
 posts.adminConsole.AdminConsoleController

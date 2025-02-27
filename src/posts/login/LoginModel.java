@@ -4,7 +4,7 @@ import posts.ModelChangeSupport;
 
 public class LoginModel extends ModelChangeSupport {
     String email = "helge@me.com";
-    String password = "Passw0rd!";
+    String password;
 
     public LoginModel() {
     }
