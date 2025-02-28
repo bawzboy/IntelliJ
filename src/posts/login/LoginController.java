@@ -10,20 +10,18 @@ import posts.eventBus.InterfaceCallback;
 public class LoginController extends BaseController implements InterfaceCallback, InterfaceLogin, ControllerInterface {
 
     LoginModel loginModel;
-    User user;
 
-    public LoginController() {
-
-    }
+    public LoginController() {}
 
     @Override
     public void handleMessage(BaseMessage baseMessage) {
         switch(baseMessage.getMessageType()) {
             case "ReturnUser":
                 ReturnUser returnUser = (ReturnUser) baseMessage;
-                user = (User) returnUser.getMessageContent();
+                User user = (User) returnUser.getMessageContent();
                 if (user == null) {
                     System.out.println("User not found");
+                    return;
                 }
                 if (user.getPassword().equals(loginModel.getPassword())) {
                     EventBus.getInstance().sendMessage(new SuccessfulLogin(loginModel.getEmail()));

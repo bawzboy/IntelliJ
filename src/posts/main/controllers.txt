@@ -1,4 +1,6 @@
 posts.main.MainController
+# posts.eventBus.EventBus
+# posts.eventBus.EventBusAsync
 # posts.db.UserManagerJDBC
 posts.rest.UserManagerREST
 posts.navigation.NavigationController

@@ -3,8 +3,8 @@ package posts.navigation;
 import posts.ModelChangeSupport;
 
 public class NavigationModel extends ModelChangeSupport {
-    boolean loginSuccessful;
-    boolean loginNotSuccessful;
+    boolean loginSuccessful = true;
+    boolean loginNotSuccessful = false;
 
     public boolean isLoginSuccessful() {
         return loginSuccessful;

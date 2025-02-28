@@ -1,42 +1,3 @@
-//package posts.eventBus;
-//
-//import posts.main.ControllerInterface;
-//import posts.messages.BaseMessage;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.concurrent.ExecutorService;
-//import java.util.concurrent.Executors;
-//
-//public class EventBus implements InterfaceEventBus {
-//
-//    private static EventBus eventBus;
-//
-//    public static EventBus getInstance() {
-//        if(eventBus == null) {
-//            eventBus = new EventBus();
-//        }
-//        return eventBus;
-//    }
-//
-//    private EventBus() {}
-//
-//    private List<InterfaceCallback> callbacks = new ArrayList<>();
-//
-//    public void sendMessage(BaseMessage message) {
-//        for(InterfaceCallback callback : callbacks) {
-//            callback.handleMessage(message);
-//        }
-//    }
-//
-//    @Override
-//    public void registerListener(InterfaceCallback  callback) {
-//        this.callbacks.add(callback);
-//    }
-//
-//}
-
-
 package posts.eventBus;
 
 import posts.messages.BaseMessage;
@@ -50,9 +11,9 @@ import java.util.concurrent.Executors;
  * EventBus für asynchrone Verarbeitung von Nachrichten.
  * Verwendet einen Thread-Pool zur parallelen Verarbeitung der Listener.
  */
-public class EventBus implements InterfaceEventBus {
+public class EventBusAsync implements InterfaceEventBus {
 
-    private static EventBus eventBus;
+    private static EventBusAsync eventBusAsync;
     private final ExecutorService executorService;
     private final List<InterfaceCallback> callbacks = new ArrayList<>();
 
@@ -60,18 +21,18 @@ public class EventBus implements InterfaceEventBus {
      * Gibt die Singleton-Instanz des EventBus zurück.
      * @return Instanz des EventBus
      */
-    public static EventBus getInstance() {
-        if (eventBus == null) {
-            eventBus = new EventBus();
+    public static EventBusAsync getInstance() {
+        if (eventBusAsync == null) {
+            eventBusAsync = new EventBusAsync();
         }
-        return eventBus;
+        return eventBusAsync;
     }
 
     /**
      * Privater Konstruktor zur Initialisierung des ExecutorService.
      * Erstellt einen Thread-Pool mit einer festen Anzahl an Threads.
      */
-    private EventBus() {
+    private EventBusAsync() {
         this.executorService = Executors.newFixedThreadPool(5);
     }
 

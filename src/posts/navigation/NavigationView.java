@@ -45,7 +45,7 @@ public class NavigationView extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Helge
+        // Generated using JFormDesigner Evaluation license - Eric
         menuBar1 = new JMenuBar();
         menu1 = new JMenu();
         menuItem1 = new JMenuItem();
@@ -54,13 +54,12 @@ public class NavigationView extends JPanel {
         observableList1 = new NavigationModel();
 
         //======== this ========
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-        . swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing
-        . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-        Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-        ) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-        public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName (
-        ) )) throw new RuntimeException( ); }} );
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
+        . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax. swing. border. TitledBorder. CENTER, javax
+        . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,
+        12 ), java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans
+        . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .equals (e .
+        getPropertyName () )) throw new RuntimeException( ); }} );
         setLayout(new MigLayout(
             "hidemode 3",
             // columns
@@ -116,7 +115,7 @@ public class NavigationView extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Helge
+    // Generated using JFormDesigner Evaluation license - Eric
     private JMenuBar menuBar1;
     private JMenu menu1;
     private JMenuItem menuItem1;
