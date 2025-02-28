@@ -3,7 +3,6 @@ package posts;
 import org.junit.jupiter.api.*;
 import posts.archive.UserManager;
 import posts.db.InterfaceUserManager;
-import posts.db.User;
 
 import java.util.List;
 

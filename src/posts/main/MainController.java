@@ -2,10 +2,7 @@ package posts.main;
 
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
-import posts.messages.BaseMessage;
-import posts.messages.RegisterNavigation;
-import posts.messages.RegisterView;
-import posts.messages.ShowNewPage;
+import posts.messages.*;
 
 import javax.swing.*;
 
@@ -32,11 +29,12 @@ public class MainController implements InterfaceCallback, ControllerInterface {
             case "ShowNewPage":
                 ShowNewPage showNewPage = (ShowNewPage) baseMessage;
                 String pageName = (String) showNewPage.getMessageContent();
+                if (pageName.equals("Login")) {
+                    EventBus.getInstance().sendMessage(new Logout());
+                }
                 view.showNewPage(pageName);
                 break;
         }
-//        view.revalidate();
-//        view.repaint();
     }
 
     @Override

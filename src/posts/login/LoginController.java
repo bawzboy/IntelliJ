@@ -23,7 +23,7 @@ public class LoginController extends BaseController implements InterfaceCallback
                     System.out.println("User not found");
                     return;
                 }
-                if (user.getPassword().equals(loginModel.getPassword())) {
+                if (user.getPasswort().equals(loginModel.getPasswort())) {
                     EventBus.getInstance().sendMessage(new SuccessfulLogin(loginModel.getEmail()));
                 }
                 break;

@@ -1,5 +1,7 @@
 package posts.db;
 
+import posts.rest.User;
+
 import java.util.List;
 
 public interface InterfaceUserManager {

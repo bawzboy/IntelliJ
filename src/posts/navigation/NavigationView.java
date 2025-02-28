@@ -36,7 +36,6 @@ public class NavigationView extends JPanel {
 
     private void menuItem3(ActionEvent e) {
             EventBus.getInstance().sendMessage(new ShowNewPage("Login"));
-            EventBus.getInstance().sendMessage(new Logout()); // TODO über Maincontroller
     }
 
     public NavigationModel getObservableList1() {

@@ -53,7 +53,7 @@ new FormModel {
 		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
 			"name": "bindingGroup"
 			addBinding( new FormBinding( "observableList1", "email", "textField1", "text" ) )
-			addBinding( new FormBinding( "observableList1", "password", "passwordField1", "text" ) )
+			addBinding( new FormBinding( "observableList1", "passwort", "passwordField1", "text" ) )
 		} )
 	}
 }

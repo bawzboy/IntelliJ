@@ -1,12 +1,10 @@
 package posts.db;
 
 import posts.eventBus.EventBus;
-import posts.eventBus.InterfaceCallback;
-import posts.main.ControllerInterface;
-import posts.messages.BaseMessage;
 import posts.messages.UserCreated;
 import posts.messages.UserDeleted;
 import posts.messages.UserUpdated;
+import posts.rest.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,14 +25,14 @@ public class UserManagerJDBC implements InterfaceUserManager {
 
     public void createUser(User user) {
         User newUser = new User(user);
-        String sql = "INSERT INTO users (email, name, password, role) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO users (email, name, passwort, nickname) VALUES (?, ?, ?, ?)";
         Connection conn = DatabaseConnection.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, newUser.getEmail());
             pstmt.setString(2, newUser.getName());
-            pstmt.setString(3, newUser.getPassword());
-            pstmt.setString(4, newUser.getRole());
+            pstmt.setString(3, newUser.getPasswort());
+            pstmt.setString(4, newUser.getNickname());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -55,8 +53,8 @@ public class UserManagerJDBC implements InterfaceUserManager {
             if (rs.next()) {
                 foundUser.setEmail(rs.getString("email"));
                 foundUser.setName(rs.getString("name"));
-                foundUser.setPassword(rs.getString("password"));
-                foundUser.setRole(rs.getString("role"));
+                foundUser.setPasswort(rs.getString("passwort"));
+                foundUser.setNickname(rs.getString("nickname"));
             } else {
                 System.out.println("No user found");
             }
@@ -77,7 +75,7 @@ public class UserManagerJDBC implements InterfaceUserManager {
                 User foundUser = new User();
                 foundUser.setEmail(rs.getString("email"));
                 foundUser.setName(rs.getString("name"));
-                foundUser.setPassword(rs.getString("password"));
+                foundUser.setPasswort(rs.getString("passwort"));
                 users.add(foundUser);
             }
         } catch (SQLException e) {
@@ -87,13 +85,13 @@ public class UserManagerJDBC implements InterfaceUserManager {
     }
 
     public void updateUser(User user) {
-        String sql = "UPDATE users SET name = ?, password = ?, role = ? WHERE email = ?";
+        String sql = "UPDATE users SET name = ?, passwort = ?, role = ? WHERE email = ?";
         Connection conn = DatabaseConnection.getConnection();
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user.getName());
-            pstmt.setString(2, user.getPassword());
-            pstmt.setString(3, user.getRole());
+            pstmt.setString(2, user.getPasswort());
+            pstmt.setString(3, user.getNickname());
             pstmt.setString(4, user.getEmail());
 
             if (pstmt.executeUpdate() == 0) {

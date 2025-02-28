@@ -3,8 +3,11 @@ package posts.rest;
 public class User {
     private String email;
     private String nickname;
-    private String password;
+    private String passwort;
     private String name;
+
+    public User() {};
+    public User(User user) {}
 
     public String getEmail() {
         return email;
@@ -18,11 +21,11 @@ public class User {
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
-    public String getPassword() {
-        return password;
+    public String getPasswort() {
+        return passwort;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswort(String password) {
+        this.passwort = password;
     }
     public String getName() {
         return name;
@@ -32,9 +35,7 @@ public class User {
     }
     @Override
     public String toString() {
-        return "User [email=" + email + ", nickname=" + nickname + ", password=" + password + ", name=" + name + "]";
+        return "User [email=" + email + ", nickname=" + nickname + ", passwort=" + passwort + ", name=" + name + "]";
     }
-
-
 
 }

@@ -4,14 +4,14 @@ import posts.ModelChangeSupport;
 
 public class LoginModel extends ModelChangeSupport {
     String email = "helge@me.com";
-    String password;
+    String passwort;
 
     public LoginModel() {
     }
 
-    public LoginModel(String email, String password) {
+    public LoginModel(String email, String passwort) {
         this.email = email;
-        this.password = password;
+        this.passwort = passwort;
     }
 
     public String getEmail() {
@@ -24,13 +24,13 @@ public class LoginModel extends ModelChangeSupport {
         changeSupport.firePropertyChange("email", old, email);
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswort() {
+        return passwort;
     }
 
-    public void setPassword(String password) {
-        String old = this.password;
-        this.password = password;
-        changeSupport.firePropertyChange("password", old, password);
+    public void setPasswort(String passwort) {
+        String old = this.passwort;
+        this.passwort = passwort;
+        changeSupport.firePropertyChange("passwort", old, passwort);
     }
 }
