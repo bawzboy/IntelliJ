@@ -3,6 +3,7 @@ posts.main.MainController
 # posts.eventBus.EventBusAsync
 # posts.db.UserManagerJDBC
 posts.rest.UserManagerREST
+posts.post.TweetManagerREST
 posts.navigation.NavigationController
 posts.post.PostController
 posts.adminConsole.AdminConsoleController

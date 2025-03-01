@@ -1,16 +1,16 @@
 package posts.db;
 
 import posts.eventBus.EventBus;
-import posts.messages.UserCreated;
-import posts.messages.UserDeleted;
-import posts.messages.UserUpdated;
+import posts.eventBus.InterfaceCallback;
+import posts.main.ControllerInterface;
+import posts.messages.*;
 import posts.rest.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserManagerJDBC implements InterfaceUserManager {
+public class UserManagerJDBC implements InterfaceUserManager, InterfaceCallback, ControllerInterface {
 
     private static UserManagerJDBC userManagerJDBC;
 
@@ -117,15 +117,25 @@ public class UserManagerJDBC implements InterfaceUserManager {
         EventBus.getInstance().sendMessage(new UserDeleted());
     }
 
-//    @Override
-//    public void handleMessage(BaseMessage baseMessage) {
-//
-//    }
-//
-//    @Override
-//    public void init() {
-//        System.out.println("UserManagaerJDBC initialized");
-//        EventBus.getInstance().registerListener(this.getInstance());
-//
-//    }
+    @Override
+    public void handleMessage(BaseMessage baseMessage) {
+        switch (baseMessage.getMessageType()) {
+            case "RequestUser":
+                RequestUser requestUser = (RequestUser) baseMessage;
+                String email = (String) requestUser.getMessageContent();
+                try {
+                    User user = this.readUser(email);
+                    EventBus.getInstance().sendMessage(new ReturnUser(user));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void init() {
+        System.out.println("UserManagerJDBC initialized");
+        EventBus.getInstance().registerListener(this);
+    }
 }

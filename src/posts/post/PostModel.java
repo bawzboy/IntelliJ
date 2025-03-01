@@ -4,6 +4,7 @@ import posts.ModelChangeSupport;
 
 public class PostModel extends ModelChangeSupport {
     String tweet;
+    
 
     public String getTweet() {
         return tweet;
