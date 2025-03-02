@@ -3,16 +3,15 @@ package posts.post;
 import posts.ModelChangeSupport;
 
 public class PostModel extends ModelChangeSupport {
-    String tweet;
-    
+    String text;
 
-    public String getTweet() {
-        return tweet;
+    public String getText() {
+        return text;
     }
 
-    public void setTweet(String tweet) {
-        String old = this.tweet;
-        this.tweet = tweet;
-        changeSupport.firePropertyChange("tweet", old, tweet);
+    public void setText(String text) {
+        String old = this.text;
+        this.text = text;
+        changeSupport.firePropertyChange("text", old, text);
     }
 }

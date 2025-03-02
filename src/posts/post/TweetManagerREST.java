@@ -5,6 +5,7 @@ import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
 import posts.main.ControllerInterface;
 import posts.messages.BaseMessage;
+import posts.messages.NewTweet;
 import posts.messages.RequestTweet;
 import posts.messages.ReturnTweet;
 
@@ -66,6 +67,18 @@ public class TweetManagerREST implements InterfaceCallback, ControllerInterface 
                 try {
                     Tweet tweet = this.getTweet(id);
                     EventBus.getInstance().sendMessage(new ReturnTweet(tweet));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                break;
+            case "NewTweet":
+                NewTweet newTweet = (NewTweet) baseMessage;
+                String tweetText = (String) newTweet.getMessageContent();
+                try { // TODO hier läuft was falsch... evtl. wirds besser wenn der komplette tweet übergeben wird...
+                    Tweet tweet = new Tweet();
+                    tweet.setContent(tweetText);
+                    createTweet(tweet);
+                    System.out.println("new tweet (tweetmanager)");
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
