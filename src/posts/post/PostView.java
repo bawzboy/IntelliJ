@@ -30,8 +30,6 @@ public class PostView extends JPanel {
 
     private void button1(ActionEvent e) {
         interfacePost.newTweet();
-//        EventBus.getInstance().sendMessage(new NewTweet(observableList1.getText()));
-//        EventBus.getInstance().sendMessage(new RequestTweet(9));
     }
 
     private void initComponents() {
