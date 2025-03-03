@@ -6,19 +6,24 @@ import posts.eventBus.InterfaceCallback;
 import posts.main.ControllerInterface;
 import posts.messages.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PostController extends BaseController implements ControllerInterface, InterfaceCallback, InterfacePost {
 
         PostModel postModel;
 
-    public PostController() {}
+        String loggedInUser;
 
+    public PostController() {}
 
     @Override
     public void newTweet() {
         Tweet tweet = new Tweet();
-        tweet.setUserEmail("helge@me.com"); // TODO logged in user...
+        tweet.setUserEmail(loggedInUser); // TODO logged in user...
         tweet.setContent(postModel.getText());
         EventBus.getInstance().sendMessage(new NewTweet(tweet));
+        EventBus.getInstance().sendMessage(new RequestTweets(loggedInUser));
     }
 
     @Override
@@ -33,21 +38,23 @@ public class PostController extends BaseController implements ControllerInterfac
     @Override
     public void handleMessage(BaseMessage baseMessage) {
         switch(baseMessage.getMessageType()) {
-            case "ReturnTweet":
-                ReturnTweet returnTweet = (ReturnTweet) baseMessage;
-                Tweet tweet = (Tweet) returnTweet.getMessageContent();
+            case "ReturnTweets":
+                ReturnTweets returnTweets = (ReturnTweets) baseMessage;
+                List<Tweet> tweets = (List<Tweet>) returnTweets.getMessageContent();
                 try {
-                    postModel.setText(tweet.getContent());
+                    List<String> tweetsAsString = new ArrayList<>();
+                    for (Tweet tweet : tweets) {
+                        tweetsAsString.add(tweet.getContent());
+                        String myTweets = String.join("\n", tweetsAsString);
+                        postModel.setTweets(myTweets);
+                    }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
                 break;
+            case "SuccessfulLogin":
+                SuccessfulLogin successfulLogin = (SuccessfulLogin) baseMessage;
+                loggedInUser = (String) successfulLogin.getMessageContent();
     }
 }
-
-
 }
-
-// tweetlänge auf 80 zeichen beschränken
-// tweetbutton -> user = logged in user // timestamp + id = "automatisch"
-//

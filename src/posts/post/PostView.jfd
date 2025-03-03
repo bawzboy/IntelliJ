@@ -45,6 +45,7 @@ new FormModel {
 		addBindingGroup( new FormBindingGroup( class org.jdesktop.beansbinding.BindingGroup ) {
 			"name": "bindingGroup"
 			addBinding( new FormBinding( "observableList1", "text", "textField1", "text" ) )
+			addBinding( new FormBinding( "observableList1", "tweets", "textArea1", "text" ) )
 		} )
 	}
 }

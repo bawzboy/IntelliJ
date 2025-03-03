@@ -1,7 +1,5 @@
 package posts.post;
 
-import java.time.LocalDateTime;
-
 public class Tweet {
 
     private String userEmail;

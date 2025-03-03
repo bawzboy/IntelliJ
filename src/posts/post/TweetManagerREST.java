@@ -6,13 +6,15 @@ import posts.eventBus.InterfaceCallback;
 import posts.main.ControllerInterface;
 import posts.messages.BaseMessage;
 import posts.messages.NewTweet;
-import posts.messages.RequestTweet;
-import posts.messages.ReturnTweet;
+import posts.messages.RequestTweets;
+import posts.messages.ReturnTweets;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Arrays;
+import java.util.List;
 
 public class TweetManagerREST implements InterfaceCallback, ControllerInterface {
     private final String baseUrl = "http://localhost:8080/tweets";
@@ -30,8 +32,18 @@ public class TweetManagerREST implements InterfaceCallback, ControllerInterface 
         return response.statusCode() == 200 ? gson.fromJson(response.body(), Tweet.class) : null;
     }
 
+    public List<Tweet> getTweets(String email) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + "/" + email))
+                .GET()
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == 200 ? Arrays.asList(gson.fromJson(response.body(), Tweet[].class)) : null;
+    }
+
     public void createTweet(Tweet tweet) throws Exception {
         String requestBody = gson.toJson(tweet);
+        System.out.println(requestBody);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(baseUrl))
                 .header("Content-Type", "application/json")
@@ -61,12 +73,12 @@ public class TweetManagerREST implements InterfaceCallback, ControllerInterface 
     @Override
     public void handleMessage(BaseMessage baseMessage) {
         switch(baseMessage.getMessageType()) {
-            case "RequestTweets": // TODO liste von tweets...
-                RequestTweet requestTweet = (RequestTweet) baseMessage;
-                int id = (int) requestTweet.getMessageContent();
+            case "RequestTweets":
+                RequestTweets requestTweets = (RequestTweets) baseMessage;
+                String email = (String) requestTweets.getMessageContent();
                 try {
-                    Tweet tweet = this.getTweet(id);
-                    EventBus.getInstance().sendMessage(new ReturnTweet(tweet));
+                    List<Tweet> tweets = this.getTweets(email);
+                    EventBus.getInstance().sendMessage(new ReturnTweets(tweets));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
