@@ -61,7 +61,7 @@ public class TweetManagerREST implements InterfaceCallback, ControllerInterface 
     @Override
     public void handleMessage(BaseMessage baseMessage) {
         switch(baseMessage.getMessageType()) {
-            case "RequestTweet":
+            case "RequestTweets": // TODO liste von tweets...
                 RequestTweet requestTweet = (RequestTweet) baseMessage;
                 int id = (int) requestTweet.getMessageContent();
                 try {
@@ -73,10 +73,8 @@ public class TweetManagerREST implements InterfaceCallback, ControllerInterface 
                 break;
             case "NewTweet":
                 NewTweet newTweet = (NewTweet) baseMessage;
-                String tweetText = (String) newTweet.getMessageContent();
-                try { // TODO hier läuft was falsch... evtl. wirds besser wenn der komplette tweet übergeben wird...
-                    Tweet tweet = new Tweet();
-                    tweet.setContent(tweetText);
+                Tweet tweet = (Tweet) newTweet.getMessageContent();
+                try {
                     createTweet(tweet);
                     System.out.println("new tweet (tweetmanager)");
                 } catch (Exception e) {

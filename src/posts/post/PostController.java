@@ -15,7 +15,10 @@ public class PostController extends BaseController implements ControllerInterfac
 
     @Override
     public void newTweet() {
-        EventBus.getInstance().sendMessage(new NewTweet(postModel.getText()));
+        Tweet tweet = new Tweet();
+        tweet.setUserEmail("helge@me.com"); // TODO logged in user...
+        tweet.setContent(postModel.getText());
+        EventBus.getInstance().sendMessage(new NewTweet(tweet));
     }
 
     @Override

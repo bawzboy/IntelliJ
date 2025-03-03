@@ -1,19 +1,18 @@
 package posts.messages;
 
+import posts.post.Tweet;
+
 public class NewTweet extends BaseMessage{
-// TODO eigentlich sollte ein ganzer Tweet übergeben werden...
-// wenn ich weder timestamp noch id übergebe, sollte die db das regeln? über bruno sieht es nicht danach aus...
 
+    Tweet tweet;
 
-    String tweetText;
-
-    public NewTweet(String tweetText) {
+    public NewTweet(Tweet tweet) {
         super("NewTweet");
-        this.tweetText = tweetText;
+        this.tweet = tweet;
     }
 
     @Override
     public Object getMessageContent() {
-        return tweetText;
+        return tweet;
     }
 }
