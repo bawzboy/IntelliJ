@@ -38,7 +38,6 @@ public class UserManagerJDBC implements InterfaceUserManager, InterfaceCallback,
         } catch (SQLException e) {
             throw new RuntimeException("Database error occurred", e);
         }
-        EventBus.getInstance().sendMessage(new UserCreated());
     }
 
     public User readUser(String email) {
@@ -100,7 +99,6 @@ public class UserManagerJDBC implements InterfaceUserManager, InterfaceCallback,
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        EventBus.getInstance().sendMessage(new UserUpdated());
     }
 
     public void deleteUser(String email) {
@@ -114,7 +112,6 @@ public class UserManagerJDBC implements InterfaceUserManager, InterfaceCallback,
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        EventBus.getInstance().sendMessage(new UserDeleted());
     }
 
     @Override
