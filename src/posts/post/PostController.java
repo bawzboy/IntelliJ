@@ -23,6 +23,12 @@ public class PostController extends BaseController implements ControllerInterfac
         tweet.setUserEmail(loggedInUser);
         tweet.setContent(postModel.getText());
         EventBus.getInstance().sendMessage(new NewTweet(tweet));
+//        try{
+//            Thread.sleep(500);
+//            }
+//        catch (Exception e) {
+//            throw new RuntimeException();
+//        }
         EventBus.getInstance().sendMessage(new RequestTweets(loggedInUser));
     }
 
@@ -55,6 +61,18 @@ public class PostController extends BaseController implements ControllerInterfac
             case "SuccessfulLogin":
                 SuccessfulLogin successfulLogin = (SuccessfulLogin) baseMessage;
                 loggedInUser = (String) successfulLogin.getMessageContent();
+                break;
+            case "ShowNewPage":
+                ShowNewPage showNewPage = (ShowNewPage) baseMessage;
+                String pageName = (String) showNewPage.getMessageContent();
+                if (pageName.equals("NewPost")) {
+                    EventBus.getInstance().sendMessage(new RequestTweets(loggedInUser));
+                }
+                break;
+            case "TweetCreated":
+                EventBus.getInstance().sendMessage(new RequestTweets(loggedInUser));
+                break;
+
     }
 }
 }

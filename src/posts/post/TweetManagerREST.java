@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import posts.eventBus.EventBus;
 import posts.eventBus.InterfaceCallback;
 import posts.main.ControllerInterface;
-import posts.messages.BaseMessage;
-import posts.messages.NewTweet;
-import posts.messages.RequestTweets;
-import posts.messages.ReturnTweets;
+import posts.messages.*;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -88,7 +85,7 @@ public class TweetManagerREST implements InterfaceCallback, ControllerInterface 
                 Tweet tweet = (Tweet) newTweet.getMessageContent();
                 try {
                     createTweet(tweet);
-                    System.out.println("new tweet (tweetmanager)");
+                    EventBus.getInstance().sendMessage(new TweetCreated());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
