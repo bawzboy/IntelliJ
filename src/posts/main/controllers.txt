@@ -2,6 +2,7 @@ posts.main.MainController
 
 posts.rest.UserManagerREST
 posts.post.TweetManagerREST
+posts.follower.FollowerControllerREST
 posts.navigation.NavigationController
 posts.post.PostController
 posts.adminConsole.AdminConsoleController
@@ -9,5 +10,3 @@ posts.adminConsole.AdminConsoleController
 posts.login.LoginController
 // der letzte Controller in der Liste wird als Startseite angezeigt
 # posts.eventBus.EventBus
-# posts.eventBus.EventBusAsync
-# posts.db.UserManagerJDBC

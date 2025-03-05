@@ -1,6 +1,6 @@
 package posts.messages;
 
-import posts.Follow;
+import posts.follower.Follow;
 
 public class AddFollow extends BaseMessage{
 

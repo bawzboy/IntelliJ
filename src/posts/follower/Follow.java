@@ -1,4 +1,4 @@
-package posts;
+package posts.follower;
 
 import java.util.Objects;
 

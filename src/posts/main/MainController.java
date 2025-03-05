@@ -34,6 +34,12 @@ public class MainController implements InterfaceCallback, ControllerInterface {
                 }
                 view.showNewPage(pageName);
                 break;
+            case "SuccessfulLogin":
+                SuccessfulLogin successfulLogin = (SuccessfulLogin) baseMessage;
+                String loggedInUser = (String) successfulLogin.getMessageContent();
+                view.showNewPage("NewPost");
+                EventBus.getInstance().sendMessage(new RequestTweets(loggedInUser));
+                break;
         }
     }
 
