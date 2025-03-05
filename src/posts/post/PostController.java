@@ -23,12 +23,6 @@ public class PostController extends BaseController implements ControllerInterfac
         tweet.setUserEmail(loggedInUser);
         tweet.setContent(postModel.getText());
         EventBus.getInstance().sendMessage(new NewTweet(tweet));
-//        try{
-//            Thread.sleep(500);
-//            }
-//        catch (Exception e) {
-//            throw new RuntimeException();
-//        }
         EventBus.getInstance().sendMessage(new RequestTweets(loggedInUser));
     }
 

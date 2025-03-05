@@ -40,7 +40,6 @@ public class TweetManagerREST implements InterfaceCallback, ControllerInterface 
 
     public void createTweet(Tweet tweet) throws Exception {
         String requestBody = gson.toJson(tweet);
-        System.out.println(requestBody);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(baseUrl))
                 .header("Content-Type", "application/json")
